@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",
+    "strict": true,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "allowImportingTsExtensions": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
+    "outDir": "./build", // 빌드된 파일을 저장할 디렉토리
+    "noEmit": true, // 또는 "emitDeclarationOnly": true
+    "moduleResolution": "node" //
+  }
+}
