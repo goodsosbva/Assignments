@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Space } from "antd";
+import { Card } from "antd";
 import { fetchBitMarets } from "../apis/maketCodeApi";
 import styled from "styled-components";
 
