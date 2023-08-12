@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Card } from "antd";
 import { fetchBitMarets } from "../apis/maketCodeApi";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-// 스타일된 컨테이너
 const AllCardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -12,6 +12,11 @@ const AllCardContainer = styled.div`
 
 const StyledCard = styled(Card)`
   width: 300px;
+`;
+
+const MoreLink = styled.div`
+  color: blue;
+  cursor: pointer;
 `;
 
 // BitCoin 객체 타입 정의
@@ -23,6 +28,11 @@ interface BitCoin {
 
 const MarketPlace = () => {
   const [bitCoins, setBitCoins] = useState<BitCoin[]>([]);
+  const navigate = useNavigate();
+
+  const moveCoinMarkePage = () => {
+    navigate("/CoinDetailPage/*");
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +56,7 @@ const MarketPlace = () => {
             <Card
               key={item.market}
               title={item.korean_name}
-              extra={<a href="#">More</a>}
+              extra={<MoreLink onClick={moveCoinMarkePage}>More</MoreLink>}
               style={{ width: 300 }}
             >
               <p>Market: {item.market}</p>
