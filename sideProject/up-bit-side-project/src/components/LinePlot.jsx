@@ -20,6 +20,7 @@ export default function LinePlot({
   const line = d3.line((d, i) => x(i), y);
   useEffect(() => void d3.select(gx.current).call(d3.axisBottom(x)), [gx, x]);
   useEffect(() => void d3.select(gy.current).call(d3.axisLeft(y)), [gy, y]);
+
   return (
     <svg width={width} height={height}>
       <g ref={gx} transform={`translate(0,${height - marginBottom})`} />

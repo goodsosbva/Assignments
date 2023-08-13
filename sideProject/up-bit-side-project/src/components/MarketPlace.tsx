@@ -30,8 +30,8 @@ const MarketPlace = () => {
   const [bitCoins, setBitCoins] = useState<BitCoin[]>([]);
   const navigate = useNavigate();
 
-  const moveCoinMarkePage = () => {
-    navigate("/CoinDetailPage/*");
+  const moveCoinMarkePage = (coin: string) => {
+    navigate(`/CoinDetailPage/${coin}`);
   };
 
   useEffect(() => {
@@ -56,7 +56,16 @@ const MarketPlace = () => {
             <Card
               key={item.market}
               title={item.korean_name}
-              extra={<MoreLink onClick={moveCoinMarkePage}>More</MoreLink>}
+              extra={
+                <MoreLink
+                  onClick={() => {
+                    const coin = item.market;
+                    moveCoinMarkePage(coin);
+                  }}
+                >
+                  More
+                </MoreLink>
+              }
               style={{ width: 300 }}
             >
               <p>Market: {item.market}</p>

@@ -15,7 +15,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route path="/MarketPlace/*" element={<MarketPlace />}></Route>
-          <Route path="/CoinDetailPage/*" element={<CoinDetailPage />}></Route>
+          <Route
+            path="/CoinDetailPage/:coin"
+            element={<CoinDetailPage />}
+          ></Route>
+
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
         <Footer />

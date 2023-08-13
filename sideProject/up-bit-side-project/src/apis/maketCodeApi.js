@@ -1,5 +1,4 @@
 import axios from "axios";
-import * as d3 from "d3";
 
 // get
 export async function fetchBitMarets() {
