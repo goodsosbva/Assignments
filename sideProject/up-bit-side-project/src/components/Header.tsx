@@ -47,7 +47,7 @@ const Header = () => {
   };
 
   const moveProjectSignificance = () => {
-    navigate("/");
+    navigate("/MoveProjectSignificance");
   };
 
   const moveAboutMe = () => {

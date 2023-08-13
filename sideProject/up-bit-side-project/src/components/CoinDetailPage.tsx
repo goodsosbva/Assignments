@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchCoinDetail } from "../apis/maketCodeApi";
-import LinePlot from "./LinePlot";
+import LinePlot from "./GraphD3/LinePlot";
 import BarGraph from "./GraphD3/BarGraph";
 import BarChart from "./GraphD3/BarChart";
 
@@ -37,7 +37,7 @@ const CoinDetailPage = () => {
             response[0].trade_price,
           ]);
         } catch (error) {
-          console.error(`비트코인 ${month}월 데이터 가져오기 실패:`, error);
+          console.error(`코인 ${month}월 데이터 가져오기 실패:`, error);
         }
       }
     };

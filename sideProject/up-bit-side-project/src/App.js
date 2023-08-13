@@ -6,6 +6,7 @@ import Footer from "./components/Footer.tsx";
 import Main from "./components/Main.tsx";
 import NotFound from "./components/NotFound.tsx";
 import CoinDetailPage from "./components/CoinDetailPage.tsx";
+import MoveProjectSignificance from "./components/MoveProjectSignificance.tsx";
 
 function App() {
   return (
@@ -19,7 +20,10 @@ function App() {
             path="/CoinDetailPage/:coin"
             element={<CoinDetailPage />}
           ></Route>
-
+          <Route
+            path="/MoveProjectSignificance"
+            element={<MoveProjectSignificance />}
+          ></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
         <Footer />
