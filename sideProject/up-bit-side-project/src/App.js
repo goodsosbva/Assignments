@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import { HashRouter, Route, Routes } from "react-router-dom";
 
 import MarketPlace from "./components/MarketPlace.tsx";
 import Header from "./components/Header.tsx";
@@ -11,23 +12,20 @@ import MoveProjectSignificance from "./components/MoveProjectSignificance.tsx";
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <HashRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Main />}></Route>
-          <Route path="/MarketPlace/*" element={<MarketPlace />}></Route>
-          <Route
-            path="/CoinDetailPage/:coin"
-            element={<CoinDetailPage />}
-          ></Route>
+          <Route path="/" element={<Main />} />
+          <Route path="/MarketPlace" element={<MarketPlace />} />
+          <Route path="/CoinDetailPage/:coin" element={<CoinDetailPage />} />
           <Route
             path="/MoveProjectSignificance"
             element={<MoveProjectSignificance />}
-          ></Route>
-          <Route path="*" element={<NotFound />}></Route>
+          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }

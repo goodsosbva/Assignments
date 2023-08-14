@@ -2,6 +2,7 @@
   "name": "up-bit-side-project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://goodsosbva.github.io/khs_coin_info_site.github.io",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
