@@ -1,31 +1,41 @@
-name: Deploy to GitHub Pages # 이 Workflow의 이름을 지정합니다.
+name: Deploy to Main
 
 on:
-  push: # push 이벤트가 발생할 때 Workflow가 실행됩니다.
+  push:
     branches:
-      - main # main 브랜치에 push가 될 때만 실행됩니다.
+      - master
 
 jobs:
-  build-and-deploy: # 이 Job은 빌드와 배포를 수행합니다.
-    runs-on: ubuntu-latest # Ubuntu 환경에서 실행됩니다.
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository # 저장소를 체크아웃합니다.
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup Node.js # Node.js 환경을 설정합니다.
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "18" # Node.js 버전 14를 사용합니다.
+          node-version: "18" # 원하는 Node.js 버전
 
-      - name: Install dependencies # 프로젝트 의존성을 설치합니다.
-        run: npm install # npm을 사용하여 의존성을 설치합니다.
+      - name: Install dependencies
+        run: npm install
 
-      - name: Build website # 웹사이트를 빌드합니다.
-        run: npm run build # 프로젝트에 맞는 빌드 스크립트로 수정해야 합니다.
+      - name: Install fontawesome packages
+        run: |
+          npm install @fortawesome/react-fontawesome
+          npm install @fortawesome/free-solid-svg-icons
 
-      - name: Deploy to GitHub Pages # GitHub Pages로 배포합니다.
-        uses: peaceiris/actions-gh-pages@v3 # GitHub Pages 배포용 액션을 사용합니다.
-        with:
-          deploy_key: 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 # Secrets에서 가져온 배포 키를 사용합니다.
-          publish_dir: ./build # 빌드된 정적 파일 경로로 수정해야 합니다.
+      - name: Install d3 library
+        run: npm install d3
+
+      - name: Build website
+        run: npm run build
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "khs"
+          git config --global user.email "goodsosbva@naver.com"
+          git add -f ./build/
+          git commit -m "Build and deploy"
+          git push origin main

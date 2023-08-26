@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Space } from "antd";
+// 이거 왜 없다고
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
@@ -35,9 +36,9 @@ const AnimatedContent = styled(Content)`
 const MoveProjectSignificance: React.FC = () => {
   const [currentLayoutIndex, setCurrentLayoutIndex] = useState(0);
 
-  const handleLayoutChange = (nextIndex: number) => {
-    setCurrentLayoutIndex(nextIndex);
-  };
+  // const handleLayoutChange = (nextIndex: number) => {
+  //   setCurrentLayoutIndex(nextIndex);
+  // };
 
   const handleNext = () => {
     if (currentLayoutIndex < layouts.length - 1) {

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchCoinDetail } from "../apis/maketCodeApi";
-import LinePlot from "./GraphD3/LinePlot";
-import BarGraph from "./GraphD3/BarGraph";
 import BarChart from "./GraphD3/BarChart";
 
 const contentStyle: React.CSSProperties = {
@@ -17,11 +15,11 @@ const CoinDetailPage = () => {
   const [coinDetail, setCoinDetail] = useState<number[]>([]);
   const { coin } = useParams();
 
-  function calculatePercentages(data: number[]): number[] {
-    const total = data.reduce((sum, value) => sum + value, 0);
-    const percentages = data.map((value) => Math.round((value / total) * 100));
-    return percentages;
-  }
+  // function calculatePercentages(data: number[]): number[] {
+  //   const total = data.reduce((sum, value) => sum + value, 0);
+  //   const percentages = data.map((value) => Math.round((value / total) * 100));
+  //   return percentages;
+  // }
 
   useEffect(() => {
     const fetchDataSequentially = async () => {
@@ -43,14 +41,12 @@ const CoinDetailPage = () => {
     };
 
     fetchDataSequentially();
-  }, []);
+  });
 
   console.log("coinDetail >> ", coinDetail);
 
   return (
     <div style={contentStyle}>
-      {/* <LinePlot data={coinDetail}></LinePlot> */}
-      {/* <BarGraph data={calculatePercentages(coinDetail)}></BarGraph> */}
       <BarChart data={coinDetail}></BarChart>
     </div>
   );

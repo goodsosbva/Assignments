@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages # 이 Workflow의 이름을 지정합니다.
+
+on:
+  push: # push 이벤트가 발생할 때 Workflow가 실행됩니다.
+    branches:
+      - master # master 브랜치에 push가 될 때만 실행됩니다.
+
+jobs:
+  build-and-deploy: # 이 Job은 빌드와 배포를 수행합니다.
+    runs-on: ubuntu-latest # Ubuntu 환경에서 실행됩니다.
+
+    steps:
+      - name: Checkout repository # 저장소를 체크아웃합니다.
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js # Node.js 환경을 설정합니다.
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.x" # Node.js 버전 18를 사용합니다.
+
+      - name: Install dependencies # 프로젝트 의존성을 설치합니다.
+        run: npm install # npm을 사용하여 의존성을 설치합니다.
+
+      - name: Install fontawesome packages
+        run: |
+          npm install @fortawesome/react-fontawesome
+          npm install @fortawesome/free-solid-svg-icons
+
+      - name: Install d3 library
+        run: npm install d3
+
+      - name: Build website # 웹사이트를 빌드합니다.
+        run: npm run build # 프로젝트에 맞는 빌드 스크립트로 수정해야 합니다.
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.FOR_DEPLOY_SECRET_SSH }}
+          publish_dir: ./build
