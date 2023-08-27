@@ -18,7 +18,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import { inject } from 'vue'
+import { useTodoListStore } from '../stores/todoList'
 
 // Props 정의
 const props = defineProps({
@@ -28,5 +28,6 @@ const props = defineProps({
 // 로깅은 컴포넌트 밖에서 처리
 console.log('todoItem >> ', props.todoItem)
 const router = useRouter()
-const { deleteTodo, toggleDone } = inject('actions')
+const todoListStroe = useTodoListStore()
+const { deleteTodo, toggleDone } = todoListStroe
 </script>
