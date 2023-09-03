@@ -20,7 +20,7 @@ export const about_me = {
     },
   },
   actions: {
-    seAboutMeData: ({ commit, state }, data) => {
+    setAboutMeData: ({ commit, state }, data) => {
       Object.keys(data).forEach((key) => {
         if (Object.keys(state).find((skey) => skey === key)) {
           commit("SET_DATA", { key: key, value: data[key] });
