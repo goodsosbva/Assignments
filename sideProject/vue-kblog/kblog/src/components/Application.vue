@@ -13,43 +13,39 @@
 </template>
 
 <script>
-import { ref, onMounted, computed, watchEffect } from 'vue'
-import { useStore } from 'vuex'
-import AppCard from '/@components/AppCard.vue'
-import useAxios from '/@app_modules/axios.js'
+import { ref, onMounted, computed, watchEffect } from "vue";
+import { useStore } from "vuex";
+import AppCard from "../components/AppCard.vue";
+import useAxios from "../modules/axios.js";
 
 export default {
-  name: 'Application',
+  name: "Application",
   setup() {
-    const store = useStore()
-    const { axiosGet } = useAxios()
+    const store = useStore();
+    const { axiosGet } = useAxios();
     const applications = computed(() =>
-      store.getters['applications/applications']()
-    )
+      store.getters["applications/applications"]()
+    );
 
     const applications_count = computed(
-      () => store.getters['applications/applications_count']
-    )
-
-    
-
-    
+      () => store.getters["applications/applications_count"]
+    );
 
     onMounted(() => {
       if (!store.getters.applications_count) {
-        axiosGet('/db/applications', (data) => {
-          store.dispatch('applications/setApplications', data.data)
-        })
+        axiosGet("/db/applications", (data) => {
+          store.dispatch("applications/setApplications", data.data);
+        });
       }
-    })
+    });
 
     return {
       applications_count,
       applications,
-    }
+    };
   },
   components: {
     AppCard,
   },
-}
+};
 </script>

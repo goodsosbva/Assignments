@@ -4,10 +4,10 @@
 </template>
 
 <script>
-import Blog from '/@components/Blog.vue'
+import Blog from "../components/Blog.vue";
 export default {
   components: {
     Blog,
   },
-}
+};
 </script>

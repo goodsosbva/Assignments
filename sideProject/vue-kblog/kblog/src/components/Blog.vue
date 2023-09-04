@@ -65,7 +65,7 @@
               <div class="collapse" :id="'archive-' + index">
                 <ol class="list-unstyled ms-3">
                   <li v-for="post in archive.posts" :key="post.id">
-                    {{ post.date.substring(0, 10) + ': ' }}
+                    {{ post.date.substring(0, 10) + ": " }}
                     <a
                       :href="'#article-' + post.id"
                       @click="onArchive($event, post.id)"
@@ -94,28 +94,28 @@
 </template>
 
 <script>
-import { ref, reactive, onMounted, computed } from 'vue'
-import useAxios from '/@app_modules/axios.js'
+import { ref, reactive, onMounted, computed } from "vue";
+import useAxios from "../modules/axios.js";
 export default {
   setup() {
     // 데이타 가져오기
-    const { axiosGet } = useAxios()
-    const posts = reactive([])
+    const { axiosGet } = useAxios();
+    const posts = reactive([]);
     onMounted(() => {
-      axiosGet('/db/blog', onSuccess)
-    })
+      axiosGet("/db/blog", onSuccess);
+    });
 
     const onSuccess = (data) => {
-      Object.assign(posts, data.data)
-      total_rows.value = posts.length
+      Object.assign(posts, data.data);
+      total_rows.value = posts.length;
 
       const temp_group = posts.reduce((accumulator, currentValue) => {
-        ;(accumulator[currentValue['date'].substring(0, 7)] =
-          accumulator[currentValue['date'].substring(0, 7)] || []).push(
+        (accumulator[currentValue["date"].substring(0, 7)] =
+          accumulator[currentValue["date"].substring(0, 7)] || []).push(
           currentValue
-        )
-        return accumulator
-      }, {})
+        );
+        return accumulator;
+      }, {});
 
       Object.assign(
         archives,
@@ -123,26 +123,29 @@ export default {
           key: key,
           posts: temp_group[key],
         }))
-      )
-    }
+      );
+    };
 
     // pagination
-    const rows = ref(5)
-    const total_rows = ref(0)
-    const page = ref(1)
+    const rows = ref(5);
+    const total_rows = ref(0);
+    const page = ref(1);
     const total_pages = computed(() => {
-      return Math.ceil(total_rows.value / rows.value)
-    })
+      return Math.ceil(total_rows.value / rows.value);
+    });
     const sliced_posts = computed(() => {
-      return posts.slice((page.value - 1) * rows.value, page.value * rows.value)
-    })
+      return posts.slice(
+        (page.value - 1) * rows.value,
+        page.value * rows.value
+      );
+    });
 
     // archives
-    const archives = reactive([])
+    const archives = reactive([]);
     const onArchive = (evt, id) => {
-      const index = posts.findIndex((post) => post.id == id) + 1
-      page.value = Math.ceil(index / rows.value)
-    }
+      const index = posts.findIndex((post) => post.id == id) + 1;
+      page.value = Math.ceil(index / rows.value);
+    };
 
     return {
       sliced_posts,
@@ -150,9 +153,9 @@ export default {
       total_pages,
       archives,
       onArchive,
-    }
+    };
   },
-}
+};
 </script>
 
 <style scoped>

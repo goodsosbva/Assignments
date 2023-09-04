@@ -2,6 +2,8 @@ const sqlite3 = require("sqlite3");
 const express = require("express");
 const TYPE = require("./type.js");
 const get = require("./get.js");
+const post = require("./post.js");
+const put = require("./put.js");
 const initial = require("./initial.js");
 const cors = require("cors");
 const app = express();
@@ -26,3 +28,5 @@ app.listen(PORT, () => {
 });
 
 get.setup(app, db);
+post.setup(app, db);
+put.setup(app, db);

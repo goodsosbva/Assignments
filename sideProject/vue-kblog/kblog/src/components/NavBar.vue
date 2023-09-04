@@ -77,6 +77,7 @@ export default {
         position: "left",
       },
       { key: "profile", value: "Profile", url: "/profile", position: "right" },
+      { key: "admin", value: "admin", url: "/admin", position: "right" },
     ];
 
     const left_menus = computed(() =>
