@@ -1,5 +1,5 @@
 <template>
-  <p class="m-2">
+  <p class="m-2" v-if="applications && applications.length > 0">
     총 {{ applications_count }} 개의 어플리케이션 중
     {{ applications.length }}개가 보여집니다.
   </p>
@@ -23,8 +23,8 @@ export default {
   setup() {
     const store = useStore();
     const { axiosGet } = useAxios();
-    const applications = computed(() =>
-      store.getters["applications/applications"]()
+    const applications = computed(
+      () => store.getters["applications/applications"]
     );
 
     const applications_count = computed(
