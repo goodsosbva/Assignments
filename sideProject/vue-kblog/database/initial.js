@@ -6,7 +6,7 @@ function fn_about_me(db) {
     (err) => {
       if (!err) {
         db.run(
-          "INSERT OR IGNORE INTO tbl_about_myself (name, email) VALUES ('DOPT', 'armigar@naver.com')"
+          "INSERT OR IGNORE INTO tbl_about_myself (name, email) VALUES ('khs', 'goodsosbva@naver.com')"
         );
       }
     }
@@ -20,18 +20,22 @@ function fn_resume(db) {
       if (!err) {
         const resume = [
           {
-            date: "2022-12-12",
-            title: "NewJelly Inc.",
-            content:
-              "당시 시각화 분석 시장에 대한 정확한 분석과 정보를 바탕으로 사람들의 게임에 대한 알권리를 제공하는 Newjelly Inc. 에 FrontEnd 개발자로 입사.",
+            date: "1993-01-05",
+            title: "탄생",
+            content: "khs 탄생!!",
             url: null,
           },
           {
-            date: "2023-09-01",
-            title: "해당 블로그 개발!",
-            content:
-              "사람들에게 나자신을 좀더 세련되게 표현하고 해당 프로젝트를 개발!",
-            url: "https://github.com/goodsosbva",
+            date: "2022-12-12",
+            title: "Play Ground Gaming Inc.",
+            content: "NewJelly FrontEnd Developer로 첫 직장 입사",
+            url: null,
+          },
+          {
+            date: "2023-02-12",
+            title: "카랑 입사",
+            content: "차량 전문 수리점 카랑 입사",
+            url: null,
           },
         ];
         resume.forEach((item) => {
@@ -96,8 +100,10 @@ function fn_notification(db) {
 }
 
 function fn_blog(db) {
+  //db.run("ALTER TABLE tbl_blog ADD type TEXT DEFAULT 'html'")
+
   db.run(
-    "CREATE TABLE IF NOT EXISTS tbl_blog (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, date DATETIME DEFAULT (datetime('now','localtime')), post TEXT)",
+    "CREATE TABLE IF NOT EXISTS tbl_blog (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, date DATETIME DEFAULT (datetime('now','localtime')), post TEXT, type TEXT DEFAULT 'html')",
     (err) => {
       if (!err) {
         query = `INSERT INTO tbl_blog (title, post) VALUES ('Sample Blog Test', '<p> This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported. </p><hr /><p> Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum. </p><blockquote><p> Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit. </p></blockquote><p> Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur. </p><h2>Heading</h2><p> Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. </p><h3>Sub-heading</h3><p> Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p><pre><code>Example code block</code></pre><p> Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa. </p><h3>Sub-heading</h3><p> Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. </p><ul><li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li><li>Donec id elit non mi porta gravida at eget metus.</li><li>Nulla vitae elit libero, a pharetra augue.</li></ul><p> Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue. </p><ol><li>Vestibulum id ligula porta felis euismod semper.</li><li> Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </li><li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li></ol><p> Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. </p>')`;
@@ -117,7 +123,7 @@ function fn_accounts(db) {
     "CREATE TABLE IF NOT EXISTS tbl_accounts (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT, date DATETIME DEFAULT (datetime('now', 'localtime')), grade TEXT, token TEXT)",
     (err) => {
       if (!err) {
-        query = `INSERT OR IGNORE INTO tbl_accounts (id, email,password, grade, token) VALUES ( (SELECT id FROM tbl_accounts WHERE grade = 'owner'), 'vue', 'vue', 'owner', null)`;
+        query = `INSERT OR IGNORE INTO tbl_accounts (id, email,password, grade, token) VALUES ( (SELECT id FROM tbl_accounts WHERE grade = 'owner'), 'goodsosbva@naver.com', 'vue', 'owner', null)`;
         db.run(query);
       }
     }
@@ -135,7 +141,8 @@ module.exports.run = function (db, type) {
     fn_notification(db);
   } else if (type == TYPE.blog) {
     fn_blog(db);
-  } else if (tpye == TYPE.accounts) {
+  } else if (type == TYPE.accounts) {
+    console.log("hello");
     fn_accounts(db);
   }
 };
