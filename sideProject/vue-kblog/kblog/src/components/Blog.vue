@@ -83,17 +83,13 @@
           <template v-slot:header>Elsewhere</template>
           <ol class="list-unstyled">
             <li>
-              <a href="https://github.com/dongprojectteam" target="_blank"
-                >GitHub</a
-              >
+              <a href="https://github.com/goodsosbva" target="_blank">GitHub</a>
             </li>
             <li>
-              <a href="https://blog.naver.com/armigar" target="_blank">Blog</a>
+              <a href="https://goodsosbva.tistory.com/" target="_blank">Blog</a>
             </li>
             <li>
-              <a href="https://www.facebook.com/dongprojectteam" target="_blank"
-                >Facebook</a
-              >
+              <a href="https://www.instagram.com/" target="_blank">instagram</a>
             </li>
           </ol>
         </blog-plugin>
