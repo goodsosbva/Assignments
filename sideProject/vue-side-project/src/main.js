@@ -1,10 +1,14 @@
-import "./assets/main.css";
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import mixins from "./mixins";
+import store from "./store"; // Vuex store import
 
 const app = createApp(App);
+
+// Vue Router를 등록합니다.
 app.use(router);
-app.mixin(mixins);
+
+// Vuex Store를 등록합니다.
+app.use(store);
+
 app.mount("#app");
