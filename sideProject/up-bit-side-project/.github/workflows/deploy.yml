@@ -1,0 +1,41 @@
+name: Deploy to Main
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18" # 원하는 Node.js 버전
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install fontawesome packages
+        run: |
+          npm install @fortawesome/react-fontawesome
+          npm install @fortawesome/free-solid-svg-icons
+
+      - name: Install d3 library
+        run: npm install d3
+
+      - name: Build website
+        run: npm run build
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "khs"
+          git config --global user.email "goodsosbva@naver.com"
+          git add -f ./build/
+          git commit -m "Build and deploy"
+          git push origin main
