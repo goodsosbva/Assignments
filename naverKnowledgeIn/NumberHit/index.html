@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>숫자 맞추기 게임</title>
+</head>
+<body>
+<div id="number_game_position">
+    <h2>숫자 맞추기 게임!</h2>
+    <p class="text_font">이 게임은 1부터 100까지의 숫자를 맞추는 게임입니다.</p>
+    <form>
+        <p class="text_font">숫자 : <input type="text" id="user" size="5"> <input type="button" id="btn" value="확인"></p>
+        <p class="text_font">추측횟수 : <input type="text" id="guesses" size="30"></p>
+        <p class="text_font">힌트 : <input type="text" id="result" size="20"></p>
+        <p class="text_font"><input type="button" id="resetbtn" value="다시!"></p>
+    </form>
+    <div id="area"></div>
+</div>
+
+<script>
+// 게임 변수 초기화
+var secretNumber = Math.floor(Math.random() * 100) + 1;
+var guesses = 0;
+
+
+// 필요한 DOM 요소 가져오기
+var userGuessInput = document.getElementById("user");
+var guessesText = document.getElementById("guesses");
+var resultText = document.getElementById("result");
+var resetButton = document.getElementById("resetbtn");
+
+// 숫자를 맞추는 함수
+function guess() {
+    console.log("secretNumber >> ", secretNumber);
+
+    var userGuess = parseInt(userGuessInput.value);
+    resultText.value  = "";
+    if (userGuess === parseInt(secretNumber)) {
+        resultText.value = "축하합니다! 숫자를 맞췄습니다.";
+        resultText.style.backgroundColor = "green";
+        userGuessInput.disabled = true;
+        resetButton.style.display = "block";
+    } else {
+        guesses++;
+        guessesText.value = guesses;
+        if (userGuess < parseInt(secretNumber)) {
+            resultText.value  = "더 큰 숫자를 추측하세요.";
+        } else {
+            resultText.value  = "더 작은 숫자를 추측하세요.";
+        }
+    }
+    userGuessInput.value = "";
+}
+
+// 게임 리셋 함수
+function resetGame() {
+    secretNumber = Math.floor(Math.random() * 100) + 1;
+    guesses = 0;
+    guessesText.value = "";
+    resultText.textContent = "";
+    resultText.style.backgroundColor = "white";
+    userGuessInput.disabled = false;
+    resetButton.style.display = "none";
+}
+
+// 이벤트 핸들러 연결
+document.getElementById("btn").addEventListener("click", guess);
+resetButton.addEventListener("click", resetGame);
+
+// 초기화
+resetGame();
+</script>
+</body>
+</html>

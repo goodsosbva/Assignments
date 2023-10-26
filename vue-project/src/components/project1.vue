@@ -48,9 +48,36 @@
         <a href="#"><img src="@/assets/slideImg/img4.png"  alt="망곰이3"><span class="imgText">망곰이! 엉ㅠ엉ㅠ</span></a>
       </div>
       <div class="info">
-        <div class="announcement">공지사항</div>
-        <div class="banner">배너</div>
-        <div class="shortcut">바로가기</div>
+        <div>
+          <ul class="tab">
+            <li class="active"><a>공지사항</a>
+              <div class="stab anoouncement">
+                <ul>
+                  <li class="">공지1 2023.10.26</li>
+                  <li class="">공지2 2023.10.26</li>
+                  <li class="">공지3 2023.10.26</li>
+                  <li class="">공지4 2023.10.26</li>
+                </ul>
+              </div>
+            </li>
+            
+            <li class=""><a>갤러리</a>
+              <div class="stab gallery">
+                <ul>
+                  <li><a><img src="@/assets/anno.png">갤럭시1</a></li>
+                  <li><a><img src="@/assets/anno.png">갤럭시2</a></li>
+                  <li><a><img src="@/assets/anno.png">갤럭시3</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <li class="banner">배너</li>
+        </div>
+        <div>
+          <li class="shortcut">바로가기</li>
+        </div>
       </div>
     </main>
     <footer>
@@ -62,32 +89,34 @@
 <script setup lang="ts">
 
 import $ from 'jquery';
-var imgs = 2;
-    var now = 0;
+  var imgs = 2;
+  var now = 0;
 
-    start();
+  $(document).ready(function () {
+
+  start();
 
     function start() {
-      $(document).ready(function () {
-        $(".subMenu").hide();
-        // 마우스 오버
-        $(".mainMenu").mouseover(function(){
-          $(".subMenu").stop().slideDown(300);
-        }).mouseout(function(){
-          $(".subMenu").stop().slideUp(300);
-        });
-
-        // jQuery 코드를 DOM이 준비된 후에 실행
-        $(".img-slide > a").eq(0).siblings().animate({ width: "-1200px" });
-
-        setInterval(function () {
-          now = now == imgs ? 0 : now + 1;
-          $(".img-slide > a").eq(now - 1).animate({ width: "-1200px" });
-          $(".img-slide > a").eq(now).animate({ width: "1200px" });
-        }, 3000);
+    
+      $(".subMenu").hide();
+      // 마우스 오버
+      $(".mainMenu").mouseover(function(){
+        $(".subMenu").stop().slideDown(300);
+      }).mouseout(function(){
+        $(".subMenu").stop().slideUp(300);
       });
-    }
 
+      // 슬라이드
+      $(".img-slide > a").eq(0).siblings().animate({ width: "-1200px" });
+
+      setInterval(function () {
+        now = now == imgs ? 0 : now + 1;
+        $(".img-slide > a").eq(now - 1).animate({ width: "-1200px" });
+        $(".img-slide > a").eq(now).animate({ width: "1200px" });
+      }, 3000);
+      
+    }
+  });
 </script>
 
 <style scope>
@@ -202,10 +231,54 @@ var imgs = 2;
     height: 200px;
     justify-content: space-between; 
     align-items: center; 
+    position: relative;
+  }
+
+  .tab > div {
+    width: 33.3%;
+  }
+
+  .tab {
+    display: flex;
+  }
+
+  .tab > li {
+    width: 100px;
+  }
+
+  .tab > li > a {
+    border: 2px solid rgba(0, 118, 190, 0.7);
+  }
+
+  .tab > li:nth-of-type(2) {
+    margin:0;
+  }
+
+  .stab {
+    position: absolute;
+    overflow: hidden;
+    height:168px; /* chrome inspect(검사) 보고 수치 계산 */
+    background:#ffffff;
+  }
+
+  .stab > li.active div{
+    border:1px solid #dddddd;
+    z-index:1;
+  }
+  
+  .gallery {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height:100%; 
   }
 
   .announcement {
-    
+    position: absolute;
+  }
+
+  .gallery {
+    position: absolute;
   }
 
   .footer {
