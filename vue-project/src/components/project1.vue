@@ -64,9 +64,9 @@
             <li class=""><a>갤러리</a>
               <div class="stab gallery">
                 <ul>
-                  <li><a><img src="@/assets/anno.png">갤럭시1</a></li>
-                  <li><a><img src="@/assets/anno.png">갤럭시2</a></li>
-                  <li><a><img src="@/assets/anno.png">갤럭시3</a></li>
+                  <li><a><img src="@/assets/cssSmall.png">갤러리1</a></li>
+                  <li><a><img src="@/assets/cssSmall.png">갤러리2</a></li>
+                  <li><a><img src="@/assets/cssSmall.png">갤러리3</a></li>
                 </ul>
               </div>
             </li>
@@ -253,33 +253,99 @@ import $ from 'jquery';
   .tab > li:nth-of-type(2) {
     margin:0;
   }
+  
+   /* 작업중... */
 
-  .stab {
-    position: absolute;
-    overflow: hidden;
+  /*컨텐츠*/
+  .info {
+    width: 100%;
+    height:200px;
+    padding:0;
+    margin:10px 0;
+    display:flex;
+    justify-content: space-between;
+    position: relative; /* 탭메뉴의 콘텐츠 영역 absolute 때문에 넣어줌 */
+  }
+  /*컨텐츠 공통사항*/
+  .info div{ width:33.3%;}
+  .info > div:nth-of-type(2){margin:0 10px;}
+
+  /*탭메뉴 : 공지사항 갤러리 */
+  .tab { display:flex;}
+  .tab > li > a{
+    padding:0 10px;
+    min-width: 85px;
+    line-height:30px;
+    font-size:14px;
+    text-align:center;
+    background:#eeeeee;
+    border:1px solid #dddddd;
+  }
+  .tab > li > a:hover{ background-color:#eeeeee;}
+
+  /* 공지사항과 갤러리 탭 맞닿는 부분에 보더를 없애줌 */
+  .tab > li:first-child a{border-right:none;}
+  /* 활성화된 탭의 스타일 */
+  .tab > li.active> a { font-weight: bold; }
+  /*탭 콘텐츠 영역 스타일*/
+  .stab{
+    position:absolute;
+    overflow:hidden;
     height:168px; /* chrome inspect(검사) 보고 수치 계산 */
     background:#ffffff;
   }
-
-  .stab > li.active div{
+  /*active 클래스가 추가된 탭 콘텐츠 영역 스타일*/
+  .tabMenu > li.active div{
     border:1px solid #dddddd;
     z-index:1;
   }
-  
-  .gallery {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height:100%; 
+
+  /* 수정된 CSS */
+  .tab .active {
+    border: 1px solid #dddddd;
+    background: blue;
+    z-index: 1;
   }
 
   .announcement {
     position: absolute;
   }
 
-  .gallery {
-    position: absolute;
+   /* 공지사항 */
+  .anoouncement ul{ padding:20px 0;}
+  .anoouncement ul li{ padding:8px 20px;
+    margin:0 10px;
+    font-size:14px;
   }
+  /*공지사항 중 2배수 리스트 스타일*/
+  .anoouncement li:nth-child(even){ background:rgba(230, 107, 39, 0.1); }
+  .anoouncement li:hover{ color:#222328;background:rgba(0, 118, 190, 0.1); }
+  .anoouncement li span { float:right; } 
+      
+  .gallery{	
+    left:0;
+    position: absolute;  
+  }
+  .gallery ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /*높이 값이 있어야 수직 정렬 됨*/
+    height:100%;  
+  }
+
+  .gallery li {
+    max-width: 100%;
+    width: auto;
+    overflow: hidden;
+  }
+
+  .gallery li:hover { 
+    opacity:0.5; 
+  }
+
+
+  
 
   .footer {
     display: flex;
