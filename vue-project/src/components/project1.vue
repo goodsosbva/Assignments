@@ -47,38 +47,37 @@
         <a href="#"><img src="@/assets/slideImg/img2.png"  alt="망곰이2"><span class="imgText">망곰이! 두둥 등장! </span></a>
         <a href="#"><img src="@/assets/slideImg/img4.png"  alt="망곰이3"><span class="imgText">망곰이! 엉ㅠ엉ㅠ</span></a>
       </div>
-      <div class="info">
-        <div>
-          <ul class="tab">
-            <li class="active"><a>공지사항</a>
-              <div class="stab anoouncement">
-                <ul>
-                  <li class="">공지1 2023.10.26</li>
-                  <li class="">공지2 2023.10.26</li>
-                  <li class="">공지3 2023.10.26</li>
-                  <li class="">공지4 2023.10.26</li>
-                </ul>
-              </div>
-            </li>
-            
-            <li class=""><a>갤러리</a>
-              <div class="stab gallery">
-                <ul>
-                  <li><a><img src="@/assets/cssSmall.png">갤러리1</a></li>
-                  <li><a><img src="@/assets/cssSmall.png">갤러리2</a></li>
-                  <li><a><img src="@/assets/cssSmall.png">갤러리3</a></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <li class="banner">배너</li>
-        </div>
-        <div>
-          <li class="shortcut">바로가기</li>
-        </div>
+      <div class="contents">
+      <div>
+        <ul class="tabMenu"> <!-- tabMenu:공지사항과 갤러리 묶어줌 -->
+        <li class="active"><a href="#">공지사항</a>
+          <div class="tabBG notice">
+            <ul>
+              <li><a href="#">편리함과 혜택을 더한 대한은행 개선 안내<span>2020.11.24</span></a></li>
+              <li><a href="#">해외송금서비스 점검 공지<span>2020.11.24</span></a></li>
+              <li><a href="#">고객센터 전화상담서비스 시간 변경 안내<span>2020.11.24</span></a></li>
+              <li><a href="#">개인정보처리방침 변경 안내<span>2020.11.24</span></a></li>
+            </ul>
+          </div>
+        </li>
+        <li class=""><a href="#">갤러리</a>
+          <div class="tabBG gallery">
+            <ul>
+              <li><a href="#"><img src="@/assets/cssSmall.png" alt="갤러리1"></a></li>
+              <li><a href="#"><img src="@/assets/cssSmall.png" alt="갤러리2"></a></li>
+              <li><a href="#"><img src="@/assets/cssSmall.png" alt="갤러리3"></a></li>
+            </ul>
+          </div>
+        </li>
+        </ul>  <!-- tabMenu 끝 -->
       </div>
+      <div class="banner">
+        <a href="#">배너</a>
+      </div>
+      <div class="direct">
+        <a href="#">바로가기</a>
+      </div>
+    </div>
     </main>
     <footer>
       <div class="footer">footer</div>
@@ -116,6 +115,14 @@ import $ from 'jquery';
       }, 3000);
       
     }
+
+    $(function(){
+      $(".tabMenu > li > a").click(function(){
+        console.log("clicked!!")
+        $(this).parent().addClass("active").siblings().removeClass("active");
+        return false;
+      })
+    })
   });
 </script>
 
@@ -226,126 +233,50 @@ import $ from 'jquery';
     font-weight: bold;
   }
 
-  .info {
+  .contents {
     display: flex;
     height: 200px;
-    justify-content: space-between; 
-    align-items: center; 
-    position: relative;
   }
 
-  .tab > div {
-    width: 33.3%;
+  .contents > div {
+    width: 33%;
   }
-
-  .tab {
-    display: flex;
-  }
-
-  .tab > li {
-    width: 100px;
-  }
-
-  .tab > li > a {
-    border: 2px solid rgba(0, 118, 190, 0.7);
-  }
-
-  .tab > li:nth-of-type(2) {
-    margin:0;
-  }
-  
-   /* 작업중... */
-
-  /*컨텐츠*/
-  .info {
-    width: 100%;
-    height:200px;
-    padding:0;
-    margin:10px 0;
-    display:flex;
-    justify-content: space-between;
-    position: relative; /* 탭메뉴의 콘텐츠 영역 absolute 때문에 넣어줌 */
-  }
-  /*컨텐츠 공통사항*/
-  .info div{ width:33.3%;}
-  .info > div:nth-of-type(2){margin:0 10px;}
 
   /*탭메뉴 : 공지사항 갤러리 */
-  .tab { display:flex;}
-  .tab > li > a{
-    padding:0 10px;
+  .tabMenu{ display:flex;}
+  .tabMenu > li > a{
     min-width: 85px;
-    line-height:30px;
-    font-size:14px;
-    text-align:center;
-    background:#eeeeee;
     border:1px solid #dddddd;
   }
-  .tab > li > a:hover{ background-color:#eeeeee;}
+
+  .tabMenu > li > a:hover { background-color:#eeeeee;}
 
   /* 공지사항과 갤러리 탭 맞닿는 부분에 보더를 없애줌 */
-  .tab > li:first-child a{border-right:none;}
+  .tabMenu > li:first-child a{border-right:none;}
+
   /* 활성화된 탭의 스타일 */
-  .tab > li.active> a { font-weight: bold; }
+  .tabMenu > li.active > a { font-weight: bold; background-color:#ffffff;}
+
   /*탭 콘텐츠 영역 스타일*/
-  .stab{
+  .tabBG{
     position:absolute;
     overflow:hidden;
-    height:168px; /* chrome inspect(검사) 보고 수치 계산 */
+    height:168px; 
     background:#ffffff;
   }
   /*active 클래스가 추가된 탭 콘텐츠 영역 스타일*/
-  .tabMenu > li.active div{
+  .tabMenu> li.active div {
     border:1px solid #dddddd;
     z-index:1;
   }
 
-  /* 수정된 CSS */
-  .tab .active {
-    border: 1px solid #dddddd;
-    background: blue;
-    z-index: 1;
+  .gallery {
+    left: 0;
   }
 
-  .announcement {
-    position: absolute;
-  }
-
-   /* 공지사항 */
-  .anoouncement ul{ padding:20px 0;}
-  .anoouncement ul li{ padding:8px 20px;
-    margin:0 10px;
-    font-size:14px;
-  }
-  /*공지사항 중 2배수 리스트 스타일*/
-  .anoouncement li:nth-child(even){ background:rgba(230, 107, 39, 0.1); }
-  .anoouncement li:hover{ color:#222328;background:rgba(0, 118, 190, 0.1); }
-  .anoouncement li span { float:right; } 
-      
-  .gallery{	
-    left:0;
-    position: absolute;  
-  }
-  .gallery ul {
+  .gallery > ul {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    /*높이 값이 있어야 수직 정렬 됨*/
-    height:100%;  
   }
-
-  .gallery li {
-    max-width: 100%;
-    width: auto;
-    overflow: hidden;
-  }
-
-  .gallery li:hover { 
-    opacity:0.5; 
-  }
-
-
-  
 
   .footer {
     display: flex;
