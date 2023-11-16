@@ -236,6 +236,8 @@ import $ from 'jquery';
   .contents {
     display: flex;
     height: 200px;
+    position: relative;
+    justify-content: space-between;
   }
 
   .contents > div {
@@ -255,7 +257,7 @@ import $ from 'jquery';
   .tabMenu > li:first-child a{border-right:none;}
 
   /* 활성화된 탭의 스타일 */
-  .tabMenu > li.active > a { font-weight: bold; background-color:#ffffff;}
+  .tabMenu > li.active > a { font-weight: bold; background-color:#ffffff; }
 
   /*탭 콘텐츠 영역 스타일*/
   .tabBG{
@@ -270,12 +272,23 @@ import $ from 'jquery';
     z-index:1;
   }
 
+   /* 공지사항 */
+  .notice ul{ padding:20px 0;}
+  .notice ul li{ padding:8px 20px;
+    margin:0 10px;
+    font-size:14px;
+  }
+
   .gallery {
     left: 0;
+    margin-left: 40px;
+    width: 365px;
   }
 
   .gallery > ul {
     display: flex;
+    justify-content: space-between;
+    padding-left: 0px;
   }
 
   .footer {
