@@ -80,7 +80,21 @@
     </div>
     </main>
     <footer>
-      <div class="footer">footer</div>
+      <div class="footer">
+        <div class="flogo"></div>
+        <div class="fcontent">
+          <ul>
+            <div class="fmenu">
+              <ul>
+                <li>menu1</li>
+                <li>menu2</li>
+                <li>menu3</li>
+              </ul>
+            </div>
+            <li>COPYRIGHTⓒ by KHS. ALL RIGHTS RESERVED</li>
+          </ul>
+        </div>
+      </div>
     </footer>
   </div>
 </template>
@@ -158,7 +172,7 @@ import $ from 'jquery';
   .mainMenu {
     display: flex;
     justify-content: space-between;
-    /* margin-right: 400px; */
+    margin-right: 400px;
     height: 100%;
     align-items: center;
     position: relative;
@@ -254,7 +268,7 @@ import $ from 'jquery';
   .tabMenu > li > a:hover { background-color:#eeeeee;}
 
   /* 공지사항과 갤러리 탭 맞닿는 부분에 보더를 없애줌 */
-  .tabMenu > li:first-child a{border-right:none;}
+  .tabMenu > li:first-child a{ border-right:none;}
 
   /* 활성화된 탭의 스타일 */
   .tabMenu > li.active > a { font-weight: bold; background-color:#ffffff; }
@@ -273,15 +287,16 @@ import $ from 'jquery';
   }
 
    /* 공지사항 */
-  .notice ul{ padding:20px 0;}
-  .notice ul li{ padding:8px 20px;
+  .notice ul { padding:20px 0;}
+  .notice ul li { 
+    padding:8px 20px;
     margin:0 10px;
     font-size:14px;
   }
 
   .gallery {
     left: 0;
-    margin-left: 40px;
+    /* margin-left: 40px; */
     width: 365px;
   }
 
@@ -291,10 +306,50 @@ import $ from 'jquery';
     padding-left: 0px;
   }
 
+  .banner {
+    background: url("@/assets/banner.jpg") center center;
+  }
+
+  .direct {
+    background: url("@/assets/direct.jpg") center center;
+  }
+
+  .banner, .direct {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+  }
+
+  .banner > a,
+  .direct > a{
+    width:100px;
+    padding:14px 0;
+    text-align: center;
+    font-weight:bold;
+    color:#ffffff;
+    background-color:rgba(230, 107, 39, 0.5);
+  }
+
   .footer {
     display: flex;
     height: 100px;
     justify-content: center; 
     align-items: center; 
+  }
+  
+  .flogo {
+    width: 33%;
+    height: 100px;
+    background: url("@/assets/logo.png") center center
+  }
+
+  .fcontent {
+    width: 60%;
+  }
+
+  .fmenu > ul {
+    display: flex;
+    justify-content: space-between;
   }
 </style>
