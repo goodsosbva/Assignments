@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HomeProject from '../components/project1.vue'
+import HomeProject from '../components/project2.vue'
 </script>
 
 <template>
@@ -7,10 +7,5 @@ import HomeProject from '../components/project1.vue'
 </template>
 
 <style scoped>
-    .home {
-        display: block;
-        width: 1200px;
-        text-align: center;
-        margin: 0 auto;
-    }
+   
 </style>
