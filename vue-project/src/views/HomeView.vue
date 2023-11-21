@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HomeProject from '../components/project2.vue'
+import HomeProject from '../components/projectThree.vue'
 </script>
 
 <template>
