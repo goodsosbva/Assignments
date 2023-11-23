@@ -70,9 +70,15 @@
                     </div>
                 </div>
                 <footer>
-                    <div class="flogo">logo</div>
+                    <div class="flogo"><a><img src="@/assets/pj4/Footer/footerLogo.png"></a></div>
                     <div class="fcopy">COPYRIGHTⓒ by WEBDESIGN. ALL RIGHTS RESERVED</div>
-                    <div class="flogo">logo</div>
+                    <div class="familySite">
+                    <select name="familySite">
+                        <option value="familySite1">패밀리사이트1</option>
+                        <option value="familySite2">패밀리사이트2</option>
+                        <option value="familySite3">패밀리사이트3</option>
+                    </select>
+                    </div>
                 </footer>
             </div>
         </div>
@@ -305,7 +311,14 @@
     }
 
     footer {
+        display: flex;
         height: 100px;
         background: #999;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .familySite {
+        padding: 8px;
     }
 </style>
