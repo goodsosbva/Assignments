@@ -132,7 +132,7 @@ import $ from 'jquery';
 
     $(function(){
       $(".tabMenu > li > a").click(function(){
-        console.log("clicked!!")
+        
         $(this).parent().addClass("active").siblings().removeClass("active");
         return false;
       })
