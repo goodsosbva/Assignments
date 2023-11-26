@@ -1,11 +1,17 @@
 <template>
     <div>
         <section id="wrap">
-            <section>상단 영역</section>
+            <h1 class="blind">웹사이트 제목</h1>
+            <Header></Header>
             <section id="container">
                 <router-view />
             </section>
-            <section>하단 영역</section>
+            <Footer></Footer>
         </section>
     </div>
 </template>
+
+<script setup lang="ts">
+    import Header from './components/Header.vue';
+    import Footer from './components/Footer.vue';
+</script>
