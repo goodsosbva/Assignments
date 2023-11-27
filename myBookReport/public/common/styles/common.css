@@ -98,3 +98,128 @@ header::after {
     box-shadow: 1px 5px 9px -3px rgb(50 50 50 / 75%);
     z-index: 2;
 }
+
+#wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+footer {
+    margin-top: auto;
+    position: relative;
+}
+
+.botinfo {
+    width: 100%;
+    height: 50px;
+    padding: 10px 0;
+    background: #ebebeb;
+    border-top: solid 1px #ddd;
+    border-bottom: solid 1px #ddd;
+}
+
+.botbtngroup {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.btn-text {
+    padding: 0 10px;
+}
+
+.btn-text::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 18px;
+    background: #d1d1d1;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.btn-text {
+    padding: 0 10px;
+    position: relative;
+}
+
+.btn-text:nth-of-type(1) {
+    padding-left: 0;
+}
+
+.btn-text:nth-of-type(1)::before {
+    display: none;
+}
+
+.btn-gray {
+    height: 29px;
+    padding: 0 10px;
+    margin-left: 10px;
+    background-color: #606060;
+    color: #fff;
+}
+
+.footerinfo {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.footerinfo::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 35px;
+    background: url('@/assets/images/footer-bg.png') repeat-x;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    z-index: 2;
+}
+
+.footer-log .footer-sub {
+    position: relative;
+    z-index: 3;
+}
+
+.footer-log img {
+    width: 1250px;
+}
+
+.footer-sub {
+    flex: 1;
+    padding-left: 20px;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 1024px) {
+    .system > button {
+        width: 25px;
+        height: 25px;
+        font-size: 0;
+    }
+
+    .system > button::before {
+        display: none;
+    }
+
+    .system > button:nth-of-type(1) {
+        background: url("../../../src/assets/images/icon-login.svg") no-repeat 0 0/100%;
+        margin-right: 15px;
+    }
+
+    .system > button:nth-of-type(2) {
+        background: url("../../../src/assets/images/icon-member.svg") no-repeat 0 0/100%;
+    }
+}
+    
+}
