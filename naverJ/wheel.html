@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="event" style="background: black; width: 100px; height: 100px;"></div>
+</body>
+</html>
+
+<script>
+    var width = 20;
+    var a = document.querySelector(".event");
+
+    a.addEventListener("mouseover", function(){
+        a.style.borderWidth = "2px";
+        a.style.borderColor = "red";
+        a.style.borderStyle = "dotted";
+    })
+
+    a.addEventListener("wheel", function(event) {
+    if (event.deltaY > 0) {
+        width--;
+    } else {
+        width++;
+        if (width < 0) width = 0;
+    }
+
+    a.style.borderStyle = "ridge";
+    a.style.borderWidth = width + "px";
+    });
+
+</script>
