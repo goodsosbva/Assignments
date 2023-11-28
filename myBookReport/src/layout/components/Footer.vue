@@ -2,7 +2,7 @@
     <footer>
         <div class="botinfo">
             <div class="botbtngroup">
-                <button class="btn-next">찾아오시는 길</button>
+                <button class="btn-text">찾아오시는 길</button>
                 <button class="btn-text">개인정보취급방침</button>
                 <button class="btn-text">이용 약관</button>
                 <button class="btn-gray">저자 신청</button>
