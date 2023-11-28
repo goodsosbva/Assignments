@@ -221,5 +221,67 @@ footer {
         background: url("../../../src/assets/images/icon-member.svg") no-repeat 0 0/100%;
     }
 }
-    
+
+@media screen and (max-width: 767px) {
+    nav ul > li {
+        flex: auto;
+        padding-right: 10px;
+    }
+
+    nav ul > li:nth-last-of-type(1) {
+        padding-right: 0px;
+    }
+
+    nav ul > li > button {
+        font-size: 15px;
+    }
+
+    .botinfo {
+        height: auto;
+        padding: 0 30px;
+    }    
+
+    .botbtngroup {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px 0;
+    }
+
+    .footerinfo {
+        position: relative;
+    }
+
+    .footerinfo::before {
+        top: 0;
+    }
+
+    .btn-text {
+        width: 33%;
+        margin-bottom: 10px;
+        font-size: 11px;
+    }
+
+    .btn-gray {
+        min-width: 75px;
+        height: 24px;
+        font-size: 11px;
+    }
+
+    .btn-text + .btn-gray {
+        margin-left: 0;
+    }
+
+    .footer-logo img {
+        width: 85px;
+    }
+
+    .footer-logo {
+        align-self: flex-start;
+        padding-top: 4px;
+    }
+
+    .footer-info address span {
+        display: block;
+    }
 }
+    
