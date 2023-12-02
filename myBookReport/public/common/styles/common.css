@@ -283,5 +283,12 @@ footer {
     .footer-info address span {
         display: block;
     }
+    
+    .modal-open #appPage {
+        z-index: 9;
+        position: relative;
+    }
+
+  
 }
     
