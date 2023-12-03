@@ -4,7 +4,7 @@
             <h1 class="blind">웹사이트 제목</h1>
             <Header></Header>
             <section id="container">
-                <router-view />
+                <RouterView />
             </section>
             <Footer></Footer>
         </section>

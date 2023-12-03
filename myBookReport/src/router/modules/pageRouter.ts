@@ -12,5 +12,3 @@ const pageRouter = {
 };
 
 export default pageRouter;
-
-// chk
