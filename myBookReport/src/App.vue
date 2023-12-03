@@ -1,5 +1,9 @@
+<script setup lang="ts">
+import { RouterView } from 'vue-router'
+</script>
+
 <template>
-  <div id="appPage">
-	  <router-view/>
+  <div>
+    <RouterView />
   </div>
 </template>
