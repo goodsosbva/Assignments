@@ -1,46 +1,10 @@
-# myBookReport
+### * 프런트엔드 UI개발 with Vue.js - 해당 프로젝트의 목적 *
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+⍤⃝해당책은 vue2.js + js를 기반으로 프런트엔드 전반의 개발을 가르쳐주는 책인데 ui쪽에 좀 더 치중해서 설명이 되여있다.😀
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+⍤⃝본인이 약간 css적인 능력이 부족한점이 있고, 현재 상황이 vue.js 기술스택을 못쓰고 있는 상황인터라 해당 책을 기획+디자인이라 생각하고,
+vue3 + ts 공부도 할겸 vue2 -> vue3 + ts로 마이그레이션 하면서 css 학습도 하려고 한다. 
 
-## Type Support for `.vue` Imports in TS
+⍤⃝그렇기에 책에서 나와있는 ui 디자인을 내가 최대한 만들어보는 식으로 구현하는 것을 목표로 하고 있다. 이미지같은 자료들은 책에 있는 자료를 그대로 가져와서 사용할 것😘 
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
