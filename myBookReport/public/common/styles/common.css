@@ -318,6 +318,20 @@ footer {
     color: #ababab;
 }
 
+.searchbook {
+    padding: 40px 0;
+    margin: 60px 0 40px;
+    background: #454545;
+}
+
+.searchbook .maintit {
+    color: #fff;
+}
+
+.guidehash {
+    display: block;
+}
+
 @media screen and (max-width: 1024px) {
     .system > button {
         width: 25px;
