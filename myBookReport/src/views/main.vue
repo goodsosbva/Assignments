@@ -174,13 +174,11 @@
     }
 
     .searchInput {
-      margin: 0 0 0 200px;
       border-radius: 0;
       height: 38px;
     }
 
     .searchButton {
-      margin-right: 200px;
       width: 70px;
     }
 

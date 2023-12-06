@@ -332,6 +332,33 @@ footer {
     display: block;
 }
 
+.inputarea,
+.guidehash {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.inputarea {
+    position: relative;
+}
+
+.guidehash span {
+    display: inline-block;
+    margin: 10px 10px 0 0;
+    color: #eee;
+    font-size: 16px;
+}
+
+.guidehash span::before {
+    content: "#";
+    display: inline-block;
+}
+
+.guidehash {
+    text-align: center;
+}
+
+/* 미디어 쿼리 */
 @media screen and (max-width: 1024px) {
     .system > button {
         width: 25px;
