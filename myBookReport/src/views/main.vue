@@ -46,7 +46,7 @@
         </h1>
         <div class="inputarea">
           <div class="input-group mb-3">
-            <input class="form-control searchInput" type="text" placeholder="Default input" aria-label="default input example">
+            <input class="form-control searchInput" type="text" placeholder="도서를 입력하세요" aria-label="book name input">
             <button type="button" class="btn btn-outline-light searchButton"><i class="bi bi-arrow-return-left"></i></button>
           </div>
         </div>
