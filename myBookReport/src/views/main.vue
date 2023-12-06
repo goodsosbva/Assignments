@@ -46,12 +46,26 @@
         </h1>
         <div class="inputarea">
           <div class="input-group mb-3">
-            <input class="form-control searchInput" type="text" placeholder="Default input" aria-label="default input example">
+            <input class="form-control searchInput" type="text" v-model="keyward" placeholder="도서를 입력하세요" aria-label="book name input">
             <button type="button" class="btn btn-outline-light searchButton"><i class="bi bi-arrow-return-left"></i></button>
+            <div class="autolayer" v-if="keyward.length > 0" :class="{ none: autocomplate.length === 0 }">
+              <ul v-if="autocomplate().length > 0">
+                <li
+                  v-for="(item, index) in autocomplate()"
+                  :key="index"
+                  v-html="item.booktit"  
+                >
+                </li>
+              </ul>
+              <div class="nonemessage" v-else>
+                <i class="bi bi-x-circle-fill"></i> 검색 결과가 없습니다.
+              </div>
+            </div>
+            
           </div>
         </div>
         <div class="guidehash">
-              <span v-for="(item, index) in hashdata" :key="index" v-html="item.text"></span>
+          <span v-for="(item, index) in hashdata" :key="index" v-html="item.text"></span>
         </div>
       </section>
       <section class="bannermenu"></section>
@@ -71,8 +85,14 @@
         name: string,
         subdec: string
     }
+
+    interface BookCategory {
+      cata: string;
+      books: { booktit: string; author: string }[];
+    }
         
     const isActiveNumber = ref<number>(0);
+    const keyward = ref<string>("");
     const content = reactive<MemberData[]>([]);
 
     const Newbooks = [
@@ -117,6 +137,31 @@
       { text: "javascript", value: "javascript" },
       { text: "자료구조/알고리즘", value: "자료구조/알고리즘" },
       { text: "파이썬", value: "파이썬" },
+    ];
+
+    const bookname: BookCategory[] = [
+      {
+          cata: "html",
+          books: [
+              { booktit: "Do it! 웹 사이트 따라 만들기", author: "김윤미" },
+              { booktit: "Do it! HTML+CSS+자바스크립트 웹 표준의 정석", author: "고경희" },
+              { booktit: "Do it! 반응형 웹 만들기", author: "김운아" },
+              { booktit: "Do it! 인터랙티브 웹 페이지 만들기", author: "최성일" },
+          ],
+      },
+      {
+          cata: "vue",
+          books: [
+              { booktit: "Do it! vue.js 입문", author: "장기효" },
+          ],
+      },
+      {
+          cata: "javascript",
+          books: [
+              { booktit: "Do it! 프로그래시브 웹앱 만들기", author: "김응석" },
+              { booktit: "Do it! 모던 자바스크립트 프로그래밍의 정석", author: "고경희" },
+          ],
+      },
     ]
 
     const addContent = (data: MemberData[], index: number) => {
@@ -125,6 +170,14 @@
         content.push(...data); // Push the new data to content
         isActiveNumber.value = index; // Reset the active index
     };
+
+    const autocomplate = () => {
+      const resultlists = bookname.filter((item) => {
+        if (item.cata.match(keyward.value))
+        return item;
+      })
+      return resultlists.length > 0 ? resultlists[0].books : [];
+    }
 
     onMounted(() => {
       content.push(...Newbooks)
@@ -174,13 +227,11 @@
     }
 
     .searchInput {
-      margin: 0 0 0 200px;
       border-radius: 0;
       height: 38px;
     }
 
     .searchButton {
-      margin-right: 200px;
       width: 70px;
     }
 
