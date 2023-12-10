@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="botinfo">
+    <div class="botinfo booksbotinfo">
       <div class="botbtngroup">
         <button class="btn-text">찾아오시는 길</button>
         <button class="btn-text">개인정보취급방침</button>
