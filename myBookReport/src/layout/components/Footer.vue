@@ -23,6 +23,7 @@
 
 <style scoped>
 .botinfo {
+  display: block;
   height: auto;
   padding: 0 30px;
 }

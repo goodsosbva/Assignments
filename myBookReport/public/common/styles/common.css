@@ -241,7 +241,7 @@ button:focus {
 .contentbox li {
   margin-right: 30px;
   vertical-align: middle;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .logo img {
@@ -745,8 +745,46 @@ header .scrollTop::after {
   padding-left: 16px;
 }
 
-.booksbotinfo {
-  margin-top: 250px;
+.bookMain {
+  margin-bottom: 1550px;
+}
+
+.bookdetail {
+  margin-top: 50px;
+}
+
+.booktitle {
+  padding-bottom: 20px;
+  border-bottom: solid 1px #ddd;
+  font-size: 25px;
+  color: #17a2b8;
+}
+
+.booktitle > span {
+  display: block;
+  font-size: 13px;
+  color: #ababab;
+}
+
+.book-info {
+  display: flex;
+  padding: 50px 30px;
+}
+
+.imgview {
+  max-width: 260px;
+}
+
+.imgview img {
+  width: 100%;
+}
+
+.bookbtns {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  padding-bottom: 5px;
+  max-width: 260px;
 }
 
 /* 미디어 쿼리 */
