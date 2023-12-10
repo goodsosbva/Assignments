@@ -172,6 +172,7 @@ const Newbooks = [
     subdec: '5년 연속 베스트셀러! 평면도 그리기부터 치수 문제 해결까지!...'
   }
 ]
+
 const NewbooksIt = [
   {
     imgurl: '/images/books_image/book08.jpg',
@@ -334,7 +335,6 @@ const noticelists = [
 ]
 
 const addContent = (data: MemberData[], index: number) => {
-  console.log(data)
   content.length = 0
   content.push(...data) // Push the new data to content
   isActiveNumber.value = index // Reset the active index
