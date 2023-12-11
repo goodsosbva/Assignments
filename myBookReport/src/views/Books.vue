@@ -48,6 +48,23 @@
           </div>
         </div>
       </section>
+      <!-- 책 상세정보 탭메뉴 -->
+      <div class="detailinfo">
+        <div class="detailTab">
+          <ul class="nav nav-tabs bookTabs">
+            <li v-for="(tab, index) in tabs" :key="index" class="nav-item" aria-current="page">
+              <a
+                :class="['nav-link', { active: index === isActiveTab, disabled: tab.isDisabled }]"
+                aria-current="page"
+                @click="addActive(index)"
+              >
+                {{ tab.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="detailTabCon"></div>
+      </div>
     </div>
   </Subpage>
 </template>
@@ -64,6 +81,7 @@ interface MemberData {
 
 const content = reactive<MemberData[]>([])
 const isActiveNumber = ref<number>(0)
+const isActiveTab = ref<number>(1)
 
 const Newbooks = [
   {
@@ -112,10 +130,24 @@ const bookinfolists = [
   { label: '상태', content: '정상 판매중' }
 ]
 
+const tabs = ref([
+  { label: '책소개', isDisabled: false },
+  { label: '출판사 리뷰', isDisabled: false },
+  { label: '목차', isDisabled: false },
+  { label: '저자 소개', isDisabled: false },
+  { label: '추천의 글', isDisabled: false },
+  { label: '자료실', isDisabled: false }
+])
+
 const addContent = (data: MemberData[], index: number) => {
   content.length = 0
   content.push(...data) // Push the new data to content
   isActiveNumber.value = index // Reset the active index
+}
+
+const addActive = (index: number) => {
+  console.log(index)
+  isActiveTab.value = index
 }
 
 onMounted(() => {
@@ -269,5 +301,10 @@ onMounted(() => {
 
 .infolist li .infocontent {
   color: #222;
+}
+
+.bookTabs li {
+  width: 150px;
+  height: 45px;
 }
 </style>
