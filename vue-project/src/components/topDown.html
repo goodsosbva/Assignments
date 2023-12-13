@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #slider {
+      overflow: hidden;
+      height: 100px;
+    }
+
+    #slider ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      transition: transform 0.5s ease-in-out;
+      display: flex;
+      flex-direction: column; /* 상하 슬라이드를 위해 세로 방향으로 정렬 */
+    }
+
+    #slider li {
+      /* float: left; 제거 */
+      height: 100%; /* 각 이미지를 부모 높이에 맞게 설정 */
+    }
+
+    #slider img {
+      width: 100px;
+      height: 100px; /* 이미지를 부모 높이에 맞게 설정 */
+    }
+  </style>
+  <title>Vertical Slider</title>
+</head>
+<body>
+
+<div id="slider">
+  <ul>
+    <li><img src="./images/img1.png" alt="Image 1"></li>
+    <li><img src="./images/img2.png" alt="Image 2"></li>
+    <li><img src="./images/img3.png" alt="Image 3"></li>
+  </ul>
+</div>
+
+<script>
+  const slider = document.getElementById('slider');
+  const ul = slider.querySelector('ul');
+  let currentIndex = 0;
+
+  function slideUp() {
+    currentIndex = (currentIndex + 1) % ul.children.length;
+    updateSlider();
+  }
+
+  function updateSlider() {
+    const translateY = -currentIndex * 100;
+    ul.style.transform = `translateY(${translateY}px)`;
+  }
+
+  setInterval(slideUp, 2000); // 2초마다 상승 슬라이드
+
+  // 초기화
+  updateSlider();
+</script>
+
+</body>
+</html>
