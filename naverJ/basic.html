@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <title>My Website</title>
   <style>
     body {
@@ -22,6 +23,8 @@
 
     main {
       padding: 20px;
+      margin-top: 100px; /* 추가된 부분 */
+      transition: margin-top 1s ease-in-out; /* 추가된 부분 */
     }
 
     footer {
@@ -34,29 +37,33 @@
       width: 100%;
     }
 
-    #slider {
-      overflow: hidden;
-      height: 100px;
+    .slideContainer {
+        position: relative;
+        height: 100px;
+        overflow: hidden;
+    }
+    .slideWrap {
+        position: absolute;
+    }
+    .slide {
+        position: relative;
+    }
+    .slide p {
+        position: absolute;
+        left: 50%;
+        top: 80%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        background: #c9b5b5;
+        border-radius: 50px;
+        padding: 10px 20px;
     }
 
-    #slider ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      transition: transform 0.5s ease-in-out;
-      display: flex;
-      flex-direction: column; /* 상하 슬라이드를 위해 세로 방향으로 정렬 */
+    .slide img {
+        height: 100px;
     }
 
-    #slider li {
-      /* float: left; 제거 */
-      height: 100%; /* 각 이미지를 부모 높이에 맞게 설정 */
-    }
-
-    #slider img {
-      width: 100px;
-      height: 100px; /* 이미지를 부모 높이에 맞게 설정 */
-    }
+    
   </style>
 </head>
 <body>
@@ -65,12 +72,18 @@
     <h1>My Website</h1>
   </header>
 
-  <div id="slider">
-    <ul>
-      <li><img src="./images/img1.png" alt="Image 1"></li>
-      <li><img src="./images/img2.png" alt="Image 2"></li>
-      <li><img src="./images/img3.png" alt="Image 3"></li>
-    </ul>
+  <div class="slideContainer">
+    <div class="slideWrap">
+      <div class="slide">
+        <a href="#"><img src="images/img1.png" alt="슬라이드1" /></a>
+      </div>
+      <div class="slide">
+        <a href="#"><img src="images/img2.png" alt="슬라이드2" /></a>
+      </div>
+      <div class="slide">
+        <a href="#"><img src="images/img3.png" alt="슬라이드3" /></a>
+      </div>
+    </div>
   </div>
 
   <main>
@@ -82,26 +95,14 @@
     &copy; 2023 My Website. All rights reserved.
   </footer>
 
+  <script>
+    setInterval(function(){
+        $('.slideWrap').animate({'marginTop':'-100px'}, function(){
+            $('.slide:first').appendTo('.slideWrap')
+            $('.slideWrap').css({'marginTop':'0px'})
+        })
+    },1000)
+  </script>
+  
 </body>
 </html>
-
-<script>
-  const slider = document.getElementById('slider');
-  const ul = slider.querySelector('ul');
-  let currentIndex = 0;
-
-  function slideUp() {
-    currentIndex = (currentIndex + 1) % ul.children.length;
-    updateSlider();
-  }
-
-  function updateSlider() {
-    const translateY = -currentIndex * 100;
-    ul.style.transform = `translateY(${translateY}px)`;
-  }
-
-  setInterval(slideUp, 2000); // 2초마다 상승 슬라이드
-
-  // 초기화
-  updateSlider();
-</script>
