@@ -787,6 +787,27 @@ header .scrollTop::after {
   max-width: 260px;
 }
 
+.detailTapCon {
+  padding: 30px;
+}
+
+.tapcontit {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #7952b3;
+  font-weight: 900;
+}
+
+.tapcontit > strong {
+  color: #7952b3;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.detailTapCon > P {
+  margin-bottom: 20px;
+}
+
 /* 미디어 쿼리 */
 @media screen and (max-width: 1024px) {
   .system > button {
@@ -947,5 +968,14 @@ header .scrollTop::after {
 
   .titlebar > h1 {
     font-size: 20px;
+  }
+
+  .detailTapCon {
+    padding: 20px 0;
+  }
+
+  .tapcontit,
+  .tapcontit > strong {
+    font-size: 15px;
   }
 }
