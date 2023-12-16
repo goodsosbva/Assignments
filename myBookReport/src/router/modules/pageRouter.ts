@@ -16,8 +16,7 @@ const pageRouter = {
     },
     ...withPrefix('/book', [
       {
-        path: '/book',
-        name: 'book',
+        path: '/',
         component: () => import('@/views/Books.vue')
       },
       {

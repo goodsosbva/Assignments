@@ -21,68 +21,24 @@
         </ul>
       </div>
     </div>
-    <div class="book-detailinfo">
-      <div class="detailTap">
-        <b-form-radio
-          name="detail-tap"
-          v-model="tapselect"
-          value="introduce"
-          button
-          button-variant="detailtap"
-        >
-          <i class="bi bi-mic" />책 소개
-        </b-form-radio>
-        <b-form-radio
-          name="detail-tap"
-          v-model="tapselect"
-          value="review"
-          button
-          button-variant="detailtap"
-        >
-          <i class="bi bi-chat-left-text" />출판사 리뷰
-        </b-form-radio>
-        <b-form-radio
-          name="detail-tap"
-          v-model="tapselect"
-          value="order"
-          button
-          button-variant="detailtap"
-        >
-          <i class="bi bi-layout-text-sidebar-reverse" />목차
-        </b-form-radio>
-        <b-form-radio
-          name="detail-tap"
-          v-model="tapselect"
-          value="write"
-          button
-          button-variant="detailtap"
-        >
-          <i class="bi bi-journal-text" />저자 소개
-        </b-form-radio>
-        <b-form-radio
-          name="detail-tap"
-          v-model="tapselect"
-          value="recommendation"
-          button
-          button-variant="detailtap"
-        >
-          <i class="bi bi-person-check" />추천의 글
-        </b-form-radio>
-        <b-form-radio
-          name="detail-tap"
-          v-model="tapselect"
-          value="reference"
-          button
-          button-variant="detailtap"
-        >
-          <i class="bi bi-inboxes" />자료실
-        </b-form-radio>
+    <!-- 책 상세정보 탭메뉴 -->
+    <div class="detailinfo">
+      <div class="detailTab">
+        <ul class="nav nav-tabs bookTabs">
+          <li v-for="(tab, index) in tabs" :key="index" class="nav-item" aria-current="page">
+            <a
+              :class="['nav-link', { active: index === isActiveTab, disabled: tab.isDisabled }]"
+              aria-current="page"
+              @click="changeTabActive(index)"
+            >
+              {{ tab.label }}
+            </a>
+          </li>
+        </ul>
       </div>
       <template v-if="tapselect === 'introduce'">
         <div class="detailTapCon">
-          <h1 class="tapcontit">
-            <strong>"{{ bookName }}"</strong>를 소개합니다.
-          </h1>
+          <h1 class="tapcontit"><strong>"Do it! 웹 사이트 따라 만들기"</strong>를 소개합니다.</h1>
           <p>
             웹 어워드 코리아에서 대상, 최우수상을 수상한 현직 웹 퍼블리셔의 작업 방식 그대로<br />웹
             사이트 하나 통째로 만들면 나도 어느새 웹 퍼블리셔!!<br />이 책 한 권이면 웹 사이트
@@ -93,7 +49,7 @@
       <template v-else-if="tapselect == 'review'">
         <div class="detailTapCon">
           <h1 class="tapcontit">
-            <strong>"{{ bookName }}"</strong>출판사 리뷰 입니다.
+            <strong>"Do it! 웹 사이트 따라 만들기"</strong>출판사 리뷰 입니다.
           </h1>
           <p>
             자신이 알고 있는 내용은 다른 사람과 나누고, 궁금한 내용은 나와 비슷한 고민을 하는
@@ -111,9 +67,7 @@
       </template>
       <template v-else-if="tapselect == 'order'">
         <div class="detailTapCon">
-          <h1 class="tapcontit">
-            <strong>"{{ bookName }}"</strong>목차 입니다
-          </h1>
+          <h1 class="tapcontit"><strong>"Do it! 웹 사이트 따라 만들기"</strong>목차 입니다</h1>
           <p>
             첫째마당. 웹 사이트 만들기 준비하기<br /><br />
             01장 실습 전 익혀야 할 기본 지식<br />
@@ -142,9 +96,7 @@
       </template>
       <template v-else-if="tapselect == 'write'">
         <div class="detailTapCon">
-          <h1 class="tapcontit">
-            <strong>"{{ bookName }}"</strong>저자소개 입니다.
-          </h1>
+          <h1 class="tapcontit"><strong>"Do it! 웹 사이트 따라 만들기"</strong>저자소개 입니다.</h1>
           <p>
             <strong>김윤미</strong><br /><br />
             그녀는 일에 대한 열정이 가득하고 언제나 두려움 없이 새로운 도전을 시작하는 실무 경력
@@ -162,7 +114,7 @@
       <template v-else-if="tapselect == 'recommendation'">
         <div class="detailTapCon">
           <h1 class="tapcontit">
-            <strong>"{{ bookName }}"</strong>추천의 글 입니다.
+            <strong>"Do it! 웹 사이트 따라 만들기"</strong>추천의 글 입니다.
           </h1>
           <p>
             <strong>이런분께 권해 드려요</strong><br />
@@ -176,25 +128,25 @@
       </template>
       <template v-else-if="tapselect == 'reference'">
         <div class="detailTapCon">
-          <h1 class="tapcontit">
-            <strong>"{{ bookName }}"</strong>자료실 입니다.
-          </h1>
+          <h1 class="tapcontit"><strong>"Do it! 웹 사이트 따라 만들기"</strong>자료실 입니다.</h1>
           <p>자료실 메뉴로 들어가시면 더 많은 내용을 확인 할 수 있습니다.</p>
         </div>
       </template>
     </div>
   </section>
 </template>
+
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useTabChange } from '@/views/utils/changeInformation'
+
+const { isActiveTab, tapselect, changeTabActive } = useTabChange()
 
 const props = defineProps<{
   bookName: string
   bookDec: string
   bookUrl: string
 }>()
-
-const tapselect = ref<string>('introduce')
 
 const bookinfolists = [
   { label: '저자', content: '김윤미' },
@@ -204,6 +156,15 @@ const bookinfolists = [
   { label: '정가', content: '16,000원' },
   { label: '상태', content: '정상 판매중' }
 ]
+
+const tabs = ref([
+  { label: '책소개', isDisabled: false },
+  { label: '출판사 리뷰', isDisabled: false },
+  { label: '목차', isDisabled: false },
+  { label: '저자 소개', isDisabled: false },
+  { label: '추천의 글', isDisabled: false },
+  { label: '자료실', isDisabled: false }
+])
 </script>
 
 <style scoped>
@@ -266,5 +227,10 @@ const bookinfolists = [
 
 .infolist li .infocontent {
   color: #222;
+}
+
+.bookTabs li {
+  width: 150px;
+  height: 45px;
 }
 </style>
