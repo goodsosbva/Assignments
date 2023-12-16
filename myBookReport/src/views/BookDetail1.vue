@@ -140,9 +140,6 @@
 import { ref } from 'vue'
 import { useTabChange } from '@/views/utils/changeInformation'
 
-// const isActiveTab = ref<number>(1)
-// const tapselect = ref<string>('introduce')
-
 const { isActiveTab, tapselect, changeTabActive } = useTabChange()
 
 const props = defineProps<{
@@ -150,15 +147,6 @@ const props = defineProps<{
   bookDec: string
   bookUrl: string
 }>()
-
-// const tabIndexConverTitle = [
-//   { index: 1, title: 'introduce' },
-//   { index: 2, title: 'review' },
-//   { index: 3, title: 'order' },
-//   { index: 4, title: 'write' },
-//   { index: 5, title: 'recommendation' },
-//   { index: 6, title: 'reference' }
-// ]
 
 const bookinfolists = [
   { label: '저자', content: '김윤미' },
@@ -177,12 +165,6 @@ const tabs = ref([
   { label: '추천의 글', isDisabled: false },
   { label: '자료실', isDisabled: false }
 ])
-
-// const changeTabActive = (index: number) => {
-//   console.log(index)
-//   isActiveTab.value = index
-//   tapselect.value = tabIndexConverTitle[index].title
-// }
 </script>
 
 <style scoped>
