@@ -138,7 +138,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useTabChange } from '@/views/utils/changeInformation'
+import { useTabChange } from '@/views/Books/utils/changeInformation'
 
 const { isActiveTab, tapselect, changeTabActive } = useTabChange()
 

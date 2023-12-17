@@ -17,12 +17,12 @@ const pageRouter = {
     ...withPrefix('/book', [
       {
         path: '/',
-        component: () => import('@/views/Books.vue')
+        component: () => import('@/views/Books/Books.vue')
       },
       {
         name: 'book',
         path: '/:tabId',
-        component: () => import('@/views/Books.vue')
+        component: () => import('@/views/Books/Books.vue')
       }
     ])
   ]
