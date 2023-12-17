@@ -27,4 +27,8 @@
   height: auto;
   padding: 0 30px;
 }
+
+footer {
+  margin-top: auto;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <Subpage :pagetit="'도서 소개'" class="bookMain">
+  <Subpage :pagetit="'도서 소개'" class="subPageMain">
     <div class="bookpage">
       <div
         id="carouselExample"
@@ -40,16 +40,16 @@ import { ref, reactive, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import Subpage from '@/layout/components/Subpage.vue'
-import BookDetail1 from './BookDetail1.vue'
-import BookDetail2 from './BookDetail2.vue'
-import BookDetail3 from './BookDetail3.vue'
-import BookDetail4 from './BookDetail4.vue'
-import BookDetail5 from './BookDetail5.vue'
-import BookDetail6 from './BookDetail6.vue'
-import BookDetail7 from './BookDetail7.vue'
-import BookDetail8 from './BookDetail8.vue'
-import BookDetail9 from './BookDetail9.vue'
-import BookDetail10 from './BookDetail10.vue'
+import BookDetail1 from '@/views/Books/BookDetail1.vue'
+import BookDetail2 from '@/views/Books/BookDetail2.vue'
+import BookDetail3 from '@/views/Books/BookDetail3.vue'
+import BookDetail4 from '@/views/Books/BookDetail4.vue'
+import BookDetail5 from '@/views/Books/BookDetail5.vue'
+import BookDetail6 from '@/views/Books/BookDetail6.vue'
+import BookDetail7 from '@/views/Books/BookDetail7.vue'
+import BookDetail8 from '@/views/Books/BookDetail8.vue'
+import BookDetail9 from '@/views/Books/BookDetail9.vue'
+import BookDetail10 from '@/views/Books/BookDetail10.vue'
 
 interface MemberData {
   imgurl: string

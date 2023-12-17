@@ -17,14 +17,34 @@ const pageRouter = {
     ...withPrefix('/book', [
       {
         path: '/',
-        component: () => import('@/views/Books.vue')
+        component: () => import('@/views/Books/Books.vue')
       },
       {
         name: 'book',
         path: '/:tabId',
-        component: () => import('@/views/Books.vue')
+        component: () => import('@/views/Books/Books.vue')
       }
-    ])
+    ]),
+    {
+      path: '/reference',
+      name: 'reference',
+      component: () => import('@/views/Reference/reference.vue')
+    },
+    {
+      path: '/movieclass',
+      name: 'movieclass',
+      component: () => import('@/views/MovieClass/movieclass.vue')
+    },
+    {
+      path: '/classample',
+      name: 'classample',
+      component: () => import('@/views/ClassSample/classsample.vue')
+    },
+    {
+      path: '/company',
+      name: 'company',
+      component: () => import('@/views/Company/company.vue')
+    }
   ]
 }
 

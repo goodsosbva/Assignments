@@ -177,9 +177,7 @@ const joinMemberData: Ref<MemberData> = ref({
 })
 
 const goToPage = (target: string) => {
-  if (route.path !== target) {
-    push(target)
-  }
+  push(target)
 }
 
 const joinMemberSubmitHandler = () => {

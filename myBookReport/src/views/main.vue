@@ -352,7 +352,6 @@ const gotoPage = (url: string) => {
 }
 
 const viewmore = () => {
-  console.log('View More Clicked', isView.value)
   isView.value = !isView.value
 }
 
