@@ -34,6 +34,11 @@ const pageRouter = {
       path: '/movieclass',
       name: 'movieclass',
       component: () => import('@/views/MovieClass/movieclass.vue')
+    },
+    {
+      path: '/classample',
+      name: 'classample',
+      component: () => import('@/views/ClassSample/classsample.vue')
     }
   ]
 }
