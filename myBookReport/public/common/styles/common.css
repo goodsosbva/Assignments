@@ -902,6 +902,15 @@ header .scrollTop::after {
   font-size: 12px;
 }
 
+.movieclasspage .listnum strong,
+.movieclasspage .listdetail > strong {
+  color: #7952b3;
+}
+
+.movieclasspage .btn-listdown {
+  background-color: #7952b3;
+}
+
 /* 미디어 쿼리 */
 @media screen and (max-width: 1024px) {
   .system > button {
