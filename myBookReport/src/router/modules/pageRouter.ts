@@ -24,7 +24,17 @@ const pageRouter = {
         path: '/:tabId',
         component: () => import('@/views/Books/Books.vue')
       }
-    ])
+    ]),
+    {
+      path: '/reference',
+      name: 'reference',
+      component: () => import('@/views/Reference/reference.vue')
+    },
+    {
+      path: '/movieclass',
+      name: 'movieclass',
+      component: () => import('@/views/MovieClass/movieclass.vue')
+    }
   ]
 }
 

@@ -745,7 +745,7 @@ header .scrollTop::after {
   padding-left: 16px;
 }
 
-.bookMain {
+.subPageMain {
   margin-bottom: 1550px;
 }
 
@@ -811,6 +811,95 @@ header .scrollTop::after {
 .bookpage .rollimg.active .imgbox {
   display: block;
   border: solid 3px #d1e0e5;
+}
+
+.subpageguide {
+  margin-bottom: 30px;
+  color: #ababab;
+}
+
+.listnum strong {
+  color: #dc3545;
+}
+
+.listbox {
+  margin-top: 20px;
+  padding: 20px;
+  border: solid 1px #ddd;
+}
+
+.listitem {
+  display: flex;
+  margin-top: 30px;
+  padding-bottom: 20px;
+  border-bottom: solid 1px #ddd;
+}
+
+.listitem:nth-of-type(1) {
+  margin-top: 0;
+}
+
+.listtnum {
+  width: 160px;
+}
+
+.listtnum {
+  max-width: 100%;
+}
+
+.listtnum > img {
+  width: 160px;
+}
+
+.listtnum > img {
+  max-width: 100%;
+}
+
+.listdetail {
+  flex: 1;
+  padding: 10px 0 0 40px;
+}
+
+.listdetail > strong {
+  display: block;
+  margin-bottom: 10px;
+  padding: 0 0 10px;
+  border-bottom: solid 1px #ddd;
+  font-size: 20px;
+  color: #dd868a;
+}
+
+.listdate {
+  text-align: right;
+  color: #ababab;
+  font-size: 13px;
+}
+
+.itembtns {
+  margin: 10px 0 20px;
+}
+
+.btn-listdown {
+  display: inline-block;
+  height: 30px;
+  padding: 0 20px;
+  margin-right: 10px;
+  min-width: 140px;
+  font-size: 14px;
+  background-color: #dd868a;
+  color: #fff;
+  width: auto;
+  border-radius: 0;
+  line-height: 28px;
+}
+
+.btn-listdown .bi::before {
+  margin-top: -2px;
+}
+
+.downguide {
+  color: #ababab;
+  font-size: 12px;
 }
 
 /* 미디어 쿼리 */

@@ -1,5 +1,5 @@
 <template>
-  <Subpage :pagetit="'도서 소개'" class="bookMain">
+  <Subpage :pagetit="'도서 소개'" class="subPageMain">
     <div class="bookpage">
       <div
         id="carouselExample"
