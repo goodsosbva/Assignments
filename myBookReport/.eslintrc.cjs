@@ -14,6 +14,11 @@ module.exports = {
   },
   rules: {
     "vue/multi-word-component-names": "off"
-  }
+  },
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
 
 }
