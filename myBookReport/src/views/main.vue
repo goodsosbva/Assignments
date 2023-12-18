@@ -127,7 +127,7 @@ interface Book {
 }
 
 interface NewbooksData {
-  Newbooks: Book[];
+  [key: string]: Book[];
 }
 
 interface BookCategory {
@@ -204,9 +204,8 @@ const noticelists = [
 ]
 
 const addContent = (newBookTitleName: string, index: number) => {
-  
   showBookNewBook.value = []
-  showBookNewBook.value = (Newbooks.value as any)[newBookTitleName]; // Push the new data to content
+  showBookNewBook.value = Newbooks.value[newBookTitleName]; // Push the new data to content
   isActiveNumber.value = index // Reset the active index
 }
 
