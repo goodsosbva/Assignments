@@ -10,6 +10,10 @@ const pageRouter = {
   component: () => import('@/layout/index.vue'),
   children: [
     {
+      path: '/',
+      redirect: '/main' // / 경로로 접속 시 /main으로 리다이렉트
+    },
+    {
       path: '/main',
       name: 'main',
       component: () => import('@/views/main.vue')
