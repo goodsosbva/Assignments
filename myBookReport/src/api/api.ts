@@ -13,3 +13,13 @@ export const getFetchData = async (endpoint: string) => {
     throw error;
   }
 };
+
+export async function fetchMainBookDataAndUpdate(key: string, target) {
+  try {
+    const response = await getFetchData(key);
+    console.log(`response ${key} >>> `, response);
+    target.value = response;
+  } catch (error) {
+    console.error(`Error in component[${key}]:`, error);
+  }
+}

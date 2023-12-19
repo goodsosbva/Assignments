@@ -111,7 +111,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
-import {getFetchData} from '@/api/api.js'
+import { getFetchData, fetchMainBookDataAndUpdate } from '@/api/api.js'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
 interface MemberData {
@@ -196,42 +196,18 @@ onMounted(async () => {
     Newbooks.value = response;
     showBookNewBook.value = response.Newbooks
   } catch (error) {
-    console.error('Error in component:', error);
+    console.error('Error in component[Newbooks]:', error);
   }
-
+  
   // get: hashData
-  try {
-    const response = await getFetchData('hashData');
-    hashdata.value = response;
-  } catch (error) {
-    console.error('Error in component:', error);
-  }
-
+  await fetchMainBookDataAndUpdate('hashData', hashdata);
   // get: bookname
-  try {
-    const response = await getFetchData('bookname');
-    bookname.value = response;
-  } catch (error) {
-    console.error('Error in component:', error);
-  }
-
+  await fetchMainBookDataAndUpdate('bookname', bookname);
   // get: mainbanner
-  try {
-    const response = await getFetchData('mainbanner');
-    console.log("response mainbanner >>> ", response)
-    mainbanner.value = response;
-  } catch (error) {
-    console.error('Error in component:', error);
-  }
-
+  await fetchMainBookDataAndUpdate('mainbanner', mainbanner);
   // get: noticelists
-  try {
-    const response = await getFetchData('noticelists');
-    console.log("response noticelists >>> ", response)
-    noticelists.value = response;
-  } catch (error) {
-    console.error('Error in component:', error);
-  }
+  await fetchMainBookDataAndUpdate('noticelists', noticelists);
+
 })
 </script>
 
