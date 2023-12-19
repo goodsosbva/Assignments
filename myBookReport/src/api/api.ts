@@ -14,10 +14,9 @@ export const getFetchData = async (endpoint: string) => {
   }
 };
 
-export async function fetchMainBookDataAndUpdate(key: string, target) {
+export async function fetchMainBookDataAndUpdate<T>(key: string, target: Ref<T>) {
   try {
     const response = await getFetchData(key);
-    console.log(`response ${key} >>> `, response);
     target.value = response;
   } catch (error) {
     console.error(`Error in component[${key}]:`, error);

@@ -161,9 +161,7 @@ const Newbooks = ref<NewbooksData>({
 const showBookNewBook = ref<MemberData[]>([])
 const hashdata = ref<HashType[]>([])
 const bookname = ref<BookCategory[]>([])
-
 const mainbanner = ref<MainBannerType[]>([])
-
 const noticelists =  ref<NoticelistsType[]>([])
 
 const addContent = (newBookTitleName: string, index: number) => {
