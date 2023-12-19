@@ -24,10 +24,10 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link btn-tab" @click="addContent('NewbooksPhoto', 2)">사진 예술</a>
+              <a class="nav-link btn-tab" @click="addContent('NewbooksPhoto', 2)" :class="{ active: isActiveNumber === 2 }">사진 예술</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link btn-tab" @click="addContent('NewbooksScience', 3)">데이터 과학</a>
+              <a class="nav-link btn-tab" @click="addContent('NewbooksScience', 3)" :class="{ active: isActiveNumber === 3 }">데이터 과학</a>
             </li>
           </ul>
         </div>
@@ -186,8 +186,6 @@ const viewmore = () => {
 }
 
 onMounted(async () => {
-  // content.push(...Newbooks)
-
   // get: NewBook 
   try {
     const response = await getFetchData('Newbooks');
