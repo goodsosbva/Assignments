@@ -3,7 +3,7 @@
     <div class="topmenu">
       <div class="contentbox">
         <div class="logo">
-          <button>
+          <button @click="goToPage('/main')">
             <img src="@/assets/images/logo.png" alt="easypublishing logo" />
           </button>
         </div>

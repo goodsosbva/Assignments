@@ -135,6 +135,22 @@ interface BookCategory {
   books: { booktit: string; author: string }[]
 }
 
+interface HashType {
+  text: string
+  value: string
+}
+
+interface MainBannerType {
+  stitle: string,
+  maintit: string,
+  iconname: string,
+  url: string,
+}
+
+interface NoticelistsType {
+  noticetit: string, date: string
+}
+
 const { push } = useRouter()
 const isActiveNumber = ref<number>(0)
 const keyward = ref<string>('')
@@ -143,65 +159,12 @@ const Newbooks = ref<NewbooksData>({
   Newbooks: []
 });
 const showBookNewBook = ref<MemberData[]>([])
+const hashdata = ref<HashType[]>([])
+const bookname = ref<BookCategory[]>([])
 
-const hashdata = [
-  { text: 'html', value: 'html' },
-  { text: 'vue', value: 'vue' },
-  { text: 'css', value: 'css' },
-  { text: 'javascript', value: 'javascript' },
-  { text: '자료구조/알고리즘', value: '자료구조/알고리즘' },
-  { text: '파이썬', value: '파이썬' }
-]
+const mainbanner = ref<MainBannerType[]>([])
 
-const bookname: BookCategory[] = [
-  {
-    cata: 'html',
-    books: [
-      { booktit: 'Do it! 웹 사이트 따라 만들기', author: '김윤미' },
-      { booktit: 'Do it! HTML+CSS+자바스크립트 웹 표준의 정석', author: '고경희' },
-      { booktit: 'Do it! 반응형 웹 만들기', author: '김운아' },
-      { booktit: 'Do it! 인터랙티브 웹 페이지 만들기', author: '최성일' }
-    ]
-  },
-  {
-    cata: 'vue',
-    books: [{ booktit: 'Do it! vue.js 입문', author: '장기효' }]
-  },
-  {
-    cata: 'javascript',
-    books: [
-      { booktit: 'Do it! 프로그래시브 웹앱 만들기', author: '김응석' },
-      { booktit: 'Do it! 모던 자바스크립트 프로그래밍의 정석', author: '고경희' }
-    ]
-  }
-]
-
-const mainbanner = [
-  {
-    stitle: '교수 및 강사 전용',
-    maintit: '교재 샘플/강의 자료',
-    iconname: 'bi-stickies',
-    url: '/classsample'
-  },
-  {
-    stitle: '스터디 카페',
-    maintit: 'Do it! 스터디룸',
-    iconname: 'bi-book-half',
-    url: 'https://cafe.naver.com/doitstudyroom'
-  },
-  {
-    stitle: '이지스 SNS',
-    maintit: '페이스북',
-    iconname: 'bi-facebook',
-    url: 'https://www.facebook.com/easyspub/'
-  }
-]
-
-const noticelists = [
-  { noticetit: '이지스퍼블리싱/이지스에듀 저작물 이용 지침', date: '2023.03.30' },
-  { noticetit: 'IT 분야 편집/기획자 모집', date: '2023.02.16' },
-  { noticetit: '이지스퍼블리싱 전자책 대여 서비스 오픈!', date: '2021.10.28' }
-]
+const noticelists =  ref<NoticelistsType[]>([])
 
 const addContent = (newBookTitleName: string, index: number) => {
   showBookNewBook.value = []
@@ -210,7 +173,7 @@ const addContent = (newBookTitleName: string, index: number) => {
 }
 
 const autocomplate = () => {
-  const resultlists = bookname.filter((item) => {
+  const resultlists = bookname.value.filter((item) => {
     if (item.cata.match(keyward.value)) return item
   })
   return resultlists.length > 0 ? resultlists[0].books : []
@@ -230,10 +193,42 @@ onMounted(async () => {
   // get: NewBook 
   try {
     const response = await getFetchData('Newbooks');
-    console.log("response >>> ", response); // 확인용 로그
-    console.log("response.Newbooks >>> ",  response.Newbooks); // 확인용 로그
     Newbooks.value = response;
     showBookNewBook.value = response.Newbooks
+  } catch (error) {
+    console.error('Error in component:', error);
+  }
+
+  // get: hashData
+  try {
+    const response = await getFetchData('hashData');
+    hashdata.value = response;
+  } catch (error) {
+    console.error('Error in component:', error);
+  }
+
+  // get: bookname
+  try {
+    const response = await getFetchData('bookname');
+    bookname.value = response;
+  } catch (error) {
+    console.error('Error in component:', error);
+  }
+
+  // get: mainbanner
+  try {
+    const response = await getFetchData('mainbanner');
+    console.log("response mainbanner >>> ", response)
+    mainbanner.value = response;
+  } catch (error) {
+    console.error('Error in component:', error);
+  }
+
+  // get: noticelists
+  try {
+    const response = await getFetchData('noticelists');
+    console.log("response noticelists >>> ", response)
+    noticelists.value = response;
   } catch (error) {
     console.error('Error in component:', error);
   }
