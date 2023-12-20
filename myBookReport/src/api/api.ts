@@ -1,6 +1,7 @@
 // api.ts
 
 import axios from 'axios';
+import type { Ref } from 'vue'; // 'import type' 추가
 
 // const baseURL = process.env.VUE_APP_URL;
 
