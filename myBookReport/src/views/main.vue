@@ -112,44 +112,8 @@
 import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import { getFetchData, fetchMainBookDataAndUpdate } from '@/api/api.js'
+import type { MemberData, Book, NewbooksData, BookCategory, HashType, MainBannerType, NoticelistsType } from '@/Types/mainTypes/interfaceTypes.js'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-
-interface MemberData {
-  imgurl: string
-  name: string
-  subdec: string
-}
-
-interface Book {
-  imgurl: string;
-  name: string;
-  subdec: string;
-}
-
-interface NewbooksData {
-  [key: string]: Book[];
-}
-
-interface BookCategory {
-  cata: string
-  books: { booktit: string; author: string }[]
-}
-
-interface HashType {
-  text: string
-  value: string
-}
-
-interface MainBannerType {
-  stitle: string,
-  maintit: string,
-  iconname: string,
-  url: string,
-}
-
-interface NoticelistsType {
-  noticetit: string, date: string
-}
 
 const { push } = useRouter()
 const isActiveNumber = ref<number>(0)
