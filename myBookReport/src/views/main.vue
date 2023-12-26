@@ -112,7 +112,7 @@
 import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import { getFetchData, fetchMainBookDataAndUpdate } from '@/api/api.js'
-import type { MemberData, Book, NewbooksData, BookCategory, HashType, MainBannerType, NoticelistsType } from '@/Types/mainTypes/interfaceTypes.js'
+import type { MemberData, NewbooksData, BookCategory, HashType, MainBannerType, NoticelistsType } from '@/Types/mainTypes/interfaceTypes.js'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
 const { push } = useRouter()
