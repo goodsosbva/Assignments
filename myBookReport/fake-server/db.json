@@ -212,7 +212,11 @@
         "link1": "",
         "link2": ""
       }
-    ]
+    ],
+    "users" : {
+      "__comment__": "회원 가입한 사용자 모음 fakedata",
+      "UserData": []
+    }
 
     
   }

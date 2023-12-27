@@ -41,6 +41,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              @click="initModal"
             ></button>
           </div>
           <div class="modal-body" id="modal-body">
@@ -87,6 +88,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              @click="initModal"
             ></button>
           </div>
           <div class="modal-body" id="modal-body">
@@ -101,10 +103,8 @@
                   aria-describedby="emailHelp"
                   placeholder="아이디를 입력해!"
                 />
-                <button type="button" class="btn btn-light duplicateBtn">중복 확인</button>
-                <div id="emailHelp" class="form-text">
-                  We'll never share your email with anyone else.
-                </div>
+                <button type="button" class="btn btn-light duplicateBtn" :class="{ 'disabled': !chkDupBtnAble }" @click="checkDuplicateId">중복 확인</button>
+                {{ !chkDupBtnClicked ? '' : isUseAbleId ? '아이디가 사용 가능 합니다' : '아이디가 사용 불가능 합니다' }}
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">비밀번호</label>
@@ -114,6 +114,17 @@
                   id="exampleInputPassword1"
                   v-model="joinMemberData.password"
                   placeholder="비밀번호를 입력해!"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">비밀번호 확인</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="exampleInputPassword2"
+                  v-model="joinMemberData.rePassword"
+                  placeholder="확인 비밀번호를 입력해!"
                 />
               </div>
 
@@ -151,8 +162,9 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import type { Ref } from 'vue'
+import { isPossibleJoin } from '@/backend/User/User'
 
 const { push } = useRouter()
 const route = useRoute()
@@ -167,22 +179,56 @@ const menulists = [
 interface MemberData {
   id: string
   password: string
+  rePassword: string
   isReceiveEmail: boolean
 }
 
 const joinMemberData: Ref<MemberData> = ref({
   id: '',
   password: '',
+  rePassword: '',
   isReceiveEmail: false
 })
+
+const isUseAbleId = ref<boolean>(false);
+const chkDupBtnAble = ref<boolean>(true)
+const chkDupBtnClicked = ref<boolean>(false)
+
+const checkDuplicateId = async() => {
+  const id = joinMemberData.value.id;
+  const isPossible = await isPossibleJoin(id)
+
+  chkDupBtnClicked.value = true;
+  
+  if (isPossible) {
+    alert("아이디가 사용가능 합니다!")
+    chkDupBtnAble.value = false
+    isUseAbleId.value = true
+  } else {
+    alert("아이디를 다시 입력 해주세요!")
+    chkDupBtnAble.value = true
+    isUseAbleId.value = false
+  }
+}
+
+const initModal = () => {
+  isUseAbleId.value = false;
+  chkDupBtnAble.value = true
+  chkDupBtnClicked.value = false
+  joinMemberData.value.id = ''
+  joinMemberData.value.password = ''
+  joinMemberData.value.rePassword = ''
+  joinMemberData.value.isReceiveEmail = false
+}
 
 const goToPage = (target: string) => {
   push(target)
 }
 
 const joinMemberSubmitHandler = () => {
-  console.log('joinMemberData >> ', joinMemberData)
+  console.log('joinMemberData.value >> ', joinMemberData.value)
 }
+
 </script>
 
 <style scoped>
@@ -216,5 +262,10 @@ const joinMemberSubmitHandler = () => {
 .duplicateBtn {
   font-size: 12px;
   margin-top: 10px;
+}
+
+.disabled {
+  background-color: rgb(76, 127, 255); /* 파랑색 스타일링 */
+  color: white;
 }
 </style>

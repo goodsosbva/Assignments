@@ -12,7 +12,7 @@ import { onMounted, ref } from 'vue'
 import Subpage from '@/layout/components/Subpage.vue'
 import listComm from '@/layout/components/listComm.vue'
 import type { BookDetail } from "@/Types/ReferenceTypes/referenceTypes"
-import {fetchMainBookDataAndUpdate} from "@/api/api"
+import { fetchMainBookDataAndUpdate } from "@/api/api"
 
 const lists = ref<BookDetail[]>([])
 
