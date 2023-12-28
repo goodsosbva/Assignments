@@ -10,9 +10,10 @@ interface Users {
 export const isPossibleJoin = async (id: string) => {
     // db 조회 (가상)
     const UserData = await getFetchData("users");
-    const AllUser = UserData.UserData;
+    const AllUser = UserData;
 
     console.log("id >>> ", id.length)
+    console.log("AllUser >>> ", AllUser);
 
     // 비어 있는지 확인
     if (id.length === 0) return false

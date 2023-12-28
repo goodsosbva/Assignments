@@ -9,7 +9,7 @@
         </div>
         <div class="system">
           <button class="login" data-bs-toggle="modal" data-bs-target="#login">로그인</button>
-          <button class="member" data-bs-toggle="modal" data-bs-target="#member">회원가입</button>
+          <button class="member" @click="openModal">회원가입</button>
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-              @click="initModal"
+              @click="initModalAndOpen"
             ></button>
           </div>
           <div class="modal-body" id="modal-body">
@@ -73,23 +73,18 @@
 
     <!-- Modal-member -->
     <div
-      class="modal fade"
       id="member"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
+      v-if="memberModalVisible"
     >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
+      <div class="modalDialog">
+        <div class="modalContent">
+          <div class="modalHeader">
             <h1 class="modal-title fs-5" id="exampleModloginalLabel">회원가입</h1>
             <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              @click="initModal"
-            ></button>
+              @click="initModalAndOpen"
+              ref="memberModalRef"
+            ><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body" id="modal-body">
             <form @submit.prevent="joinMemberSubmitHandler">
@@ -165,6 +160,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { onMounted, ref } from 'vue'
 import type { Ref } from 'vue'
 import { isPossibleJoin } from '@/backend/User/User'
+import { postSendData } from '@/api/api'
 
 const { push } = useRouter()
 const route = useRoute()
@@ -193,6 +189,8 @@ const joinMemberData: Ref<MemberData> = ref({
 const isUseAbleId = ref<boolean>(false);
 const chkDupBtnAble = ref<boolean>(true)
 const chkDupBtnClicked = ref<boolean>(false)
+const isPossibleId = ref<boolean>(false);
+const memberModalVisible = ref<boolean>(false);
 
 const checkDuplicateId = async() => {
   const id = joinMemberData.value.id;
@@ -204,14 +202,29 @@ const checkDuplicateId = async() => {
     alert("아이디가 사용가능 합니다!")
     chkDupBtnAble.value = false
     isUseAbleId.value = true
+    isPossibleId.value = true
   } else {
-    alert("아이디를 다시 입력 해주세요!")
+    alert("아이디를 중복되었습니다. 다시 입력 해주세요!")
     chkDupBtnAble.value = true
     isUseAbleId.value = false
+    isPossibleId.value = false
   }
 }
 
-const initModal = () => {
+const checkPassword = () => {
+  if (joinMemberData.value.password.length == 0 || joinMemberData.value.rePassword.length == 0) {
+    return false
+  }
+  
+  if (joinMemberData.value.password === joinMemberData.value.rePassword) return true
+  else return false
+}
+
+const openModal = () => {
+  memberModalVisible.value = !memberModalVisible.value
+}
+
+const initModalAndOpen = () => {
   isUseAbleId.value = false;
   chkDupBtnAble.value = true
   chkDupBtnClicked.value = false
@@ -219,14 +232,33 @@ const initModal = () => {
   joinMemberData.value.password = ''
   joinMemberData.value.rePassword = ''
   joinMemberData.value.isReceiveEmail = false
+
+  memberModalVisible.value = false
 }
 
 const goToPage = (target: string) => {
   push(target)
 }
 
-const joinMemberSubmitHandler = () => {
+const joinMemberSubmitHandler = async() => {
   console.log('joinMemberData.value >> ', joinMemberData.value)
+  const isRightPassword = checkPassword()
+
+  if (!isRightPassword) {
+    alert("비밀번호 입력 또는 비밀번호 확인 입력창에 비밀번호를 제대로 입력해주세요!")
+  } else if (isPossibleId.value && isRightPassword) {
+    // 회원 가입 post 요청
+    try {
+      const result = await postSendData('users', joinMemberData.value);
+      console.log('POST request successful. Response:', result);
+      alert("회원 가입이 완료 되었습니다!")
+      // 이 alert가 끝나면 회원가입 모달창 종료
+      memberModalVisible.value = false;
+
+    } catch (error) {
+      console.error('Error making POST request:', error);
+    }
+  }
 }
 
 </script>
@@ -267,5 +299,28 @@ const joinMemberSubmitHandler = () => {
 .disabled {
   background-color: rgb(76, 127, 255); /* 파랑색 스타일링 */
   color: white;
+}
+
+.modalDialog {
+  position: relative;
+}
+
+.modalContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding-top: 50px;
+  top: 50%;
+  left: 30%;
+  width: 700px;
+  height: 700px;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
 }
 </style>
