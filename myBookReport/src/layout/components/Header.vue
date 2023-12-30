@@ -8,8 +8,8 @@
           </button>
         </div>
         <div class="system">
-          <button class="login" data-bs-toggle="modal" data-bs-target="#login">로그인</button>
-          <button class="member" @click="openModal">회원가입</button>
+          <button class="login" @click="openModal('login')">로그인</button>
+          <button class="member" @click="openModal('signIn')">회원가입</button>
         </div>
       </div>
     </div>
@@ -25,16 +25,10 @@
     </nav>
 
     <!-- Modal-login -->
-    <div
-      class="modal fade"
-      id="login"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
+    <div id="login" tabindex="-1" v-if="siginInModalVisible">
+      <div class="modalDialog">
+        <div class="modalContent">
+          <div class="modalHeader">
             <h1 class="modal-title fs-5" id="exampleModloginalLabel">로그인</h1>
             <button
               type="button"
@@ -72,19 +66,14 @@
     </div>
 
     <!-- Modal-member -->
-    <div
-      id="member"
-      tabindex="-1"
-      v-if="memberModalVisible"
-    >
+    <div id="member" tabindex="-1" v-if="memberModalVisible">
       <div class="modalDialog">
         <div class="modalContent">
           <div class="modalHeader">
             <h1 class="modal-title fs-5" id="exampleModloginalLabel">회원가입</h1>
-            <button
-              @click="initModalAndOpen"
-              ref="memberModalRef"
-            ><i class="bi bi-x-lg"></i></button>
+            <button @click="initModalAndOpen" ref="memberModalRef">
+              <i class="bi bi-x-lg"></i>
+            </button>
           </div>
           <div class="modal-body" id="modal-body">
             <form @submit.prevent="joinMemberSubmitHandler">
@@ -98,8 +87,21 @@
                   aria-describedby="emailHelp"
                   placeholder="아이디를 입력해!"
                 />
-                <button type="button" class="btn btn-light duplicateBtn" :class="{ 'disabled': !chkDupBtnAble }" @click="checkDuplicateId">중복 확인</button>
-                {{ !chkDupBtnClicked ? '' : isUseAbleId ? '아이디가 사용 가능 합니다' : '아이디가 사용 불가능 합니다' }}
+                <button
+                  type="button"
+                  class="btn btn-light duplicateBtn"
+                  :class="{ disabled: !chkDupBtnAble }"
+                  @click="checkDuplicateId"
+                >
+                  중복 확인
+                </button>
+                {{
+                  !chkDupBtnClicked
+                    ? ''
+                    : isUseAbleId
+                    ? '아이디가 사용 가능 합니다'
+                    : '아이디가 사용 불가능 합니다'
+                }}
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">비밀번호</label>
@@ -186,25 +188,26 @@ const joinMemberData: Ref<MemberData> = ref({
   isReceiveEmail: false
 })
 
-const isUseAbleId = ref<boolean>(false);
+const isUseAbleId = ref<boolean>(false)
 const chkDupBtnAble = ref<boolean>(true)
 const chkDupBtnClicked = ref<boolean>(false)
-const isPossibleId = ref<boolean>(false);
-const memberModalVisible = ref<boolean>(false);
+const isPossibleId = ref<boolean>(false)
+const memberModalVisible = ref<boolean>(false)
+const siginInModalVisible = ref<boolean>(false)
 
-const checkDuplicateId = async() => {
-  const id = joinMemberData.value.id;
+const checkDuplicateId = async () => {
+  const id = joinMemberData.value.id
   const isPossible = await isPossibleJoin(id)
 
-  chkDupBtnClicked.value = true;
-  
+  chkDupBtnClicked.value = true
+
   if (isPossible) {
-    alert("아이디가 사용가능 합니다!")
+    alert('아이디가 사용가능 합니다!')
     chkDupBtnAble.value = false
     isUseAbleId.value = true
     isPossibleId.value = true
   } else {
-    alert("아이디를 중복되었습니다. 다시 입력 해주세요!")
+    alert('아이디를 중복되었습니다. 다시 입력 해주세요!')
     chkDupBtnAble.value = true
     isUseAbleId.value = false
     isPossibleId.value = false
@@ -215,17 +218,20 @@ const checkPassword = () => {
   if (joinMemberData.value.password.length == 0 || joinMemberData.value.rePassword.length == 0) {
     return false
   }
-  
+
   if (joinMemberData.value.password === joinMemberData.value.rePassword) return true
   else return false
 }
 
-const openModal = () => {
-  memberModalVisible.value = !memberModalVisible.value
+const openModal = (whatIs: string) => {
+  if (whatIs === 'login' && memberModalVisible.value === false)
+    siginInModalVisible.value = !siginInModalVisible.value
+  else if (whatIs === 'signIn' && siginInModalVisible.value === false)
+    memberModalVisible.value = !memberModalVisible.value
 }
 
 const initModalAndOpen = () => {
-  isUseAbleId.value = false;
+  isUseAbleId.value = false
   chkDupBtnAble.value = true
   chkDupBtnClicked.value = false
   joinMemberData.value.id = ''
@@ -240,27 +246,25 @@ const goToPage = (target: string) => {
   push(target)
 }
 
-const joinMemberSubmitHandler = async() => {
+const joinMemberSubmitHandler = async () => {
   console.log('joinMemberData.value >> ', joinMemberData.value)
   const isRightPassword = checkPassword()
 
   if (!isRightPassword) {
-    alert("비밀번호 입력 또는 비밀번호 확인 입력창에 비밀번호를 제대로 입력해주세요!")
+    alert('비밀번호 입력 또는 비밀번호 확인 입력창에 비밀번호를 제대로 입력해주세요!')
   } else if (isPossibleId.value && isRightPassword) {
     // 회원 가입 post 요청
     try {
-      const result = await postSendData('users', joinMemberData.value);
-      console.log('POST request successful. Response:', result);
-      alert("회원 가입이 완료 되었습니다!")
+      const result = await postSendData('users', joinMemberData.value)
+      console.log('POST request successful. Response:', result)
+      alert('회원 가입이 완료 되었습니다!')
       // 이 alert가 끝나면 회원가입 모달창 종료
-      memberModalVisible.value = false;
-
+      memberModalVisible.value = false
     } catch (error) {
-      console.error('Error making POST request:', error);
+      console.error('Error making POST request:', error)
     }
   }
 }
-
 </script>
 
 <style scoped>
