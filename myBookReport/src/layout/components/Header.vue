@@ -46,6 +46,7 @@
                 class="form-control"
                 placeholder="아이디를 입력해 주세요"
                 aria-label="id"
+                v-model="username"
               />
             </div>
             <div class="pwWrap">
@@ -55,11 +56,14 @@
                 class="form-control"
                 placeholder="비밀번호를 입력해 주세오"
                 aria-label="pw"
+                v-model="password"
               />
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary loginBtn">로그인</button>
+            <button type="button" class="btn btn-primary loginBtn" @click="loginHandler">
+              로그인
+            </button>
           </div>
         </div>
       </div>
@@ -161,8 +165,9 @@
 import { useRoute, useRouter } from 'vue-router'
 import { onMounted, ref } from 'vue'
 import type { Ref } from 'vue'
-import { isPossibleJoin } from '@/backend/User/User'
+import { isPossibleJoin, authenticateUser } from '@/backend/User/User'
 import { postSendData } from '@/api/api'
+import { BIconArrowLeftShort } from 'bootstrap-vue'
 
 const { push } = useRouter()
 const route = useRoute()
@@ -194,6 +199,20 @@ const chkDupBtnClicked = ref<boolean>(false)
 const isPossibleId = ref<boolean>(false)
 const memberModalVisible = ref<boolean>(false)
 const siginInModalVisible = ref<boolean>(false)
+const username = ref<string>('')
+const password = ref<string>('')
+
+const loginHandler = async () => {
+  alert(`${username.value} + ${password.value}`)
+  const isLogined = await authenticateUser(username.value, password.value)
+
+  if (isLogined.isLogin) {
+    alert(`로그인이 되었습니다. ${isLogined.loginData}`)
+    siginInModalVisible.value = false
+  } else {
+    alert('로그인이 실패했습니다.')
+  }
+}
 
 const checkDuplicateId = async () => {
   const id = joinMemberData.value.id

@@ -312,5 +312,8 @@
       "rePassword": "1234",
       "isReceiveEmail": "on"
     }
-  ]
+  ],
+  "jwtToken": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJteVVzZXIiOiJZIiwidXNlclJpZ2h0IjoiY29tbW9uIGtocyBzaXRlIHVzZXIiLCJleHBpcmUiOjIwMjUwMTA1fQ.X7YjF8_6rlErGyY5yzZQ-ld70P81Bz5mXKCoYPRYwwc"
+  }
 }
