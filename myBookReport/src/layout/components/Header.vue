@@ -8,8 +8,28 @@
           </button>
         </div>
         <div class="system">
-          <button class="login" @click="openModal('login')">로그인</button>
-          <button v-if="isShowSignUp" class="member" @click="openModal('signIn')">회원가입</button>
+          <button class="login" style="margin-bottom: 4px" @click="openModal('login')">
+            로그인
+          </button>
+          <button
+            v-if="isShowSignUp"
+            class="member"
+            style="margin-bottom: 4px"
+            @click="openModal('signIn')"
+          >
+            회원가입
+          </button>
+          <span
+            v-if="!isShowSignUp"
+            style="
+              display: inline-block;
+              margin-top: 10px;
+              margin-left: 15px;
+              font-size: 15px;
+              white-space: nowrap;
+            "
+            >안녕하세요! 손님!</span
+          >
         </div>
       </div>
     </div>
