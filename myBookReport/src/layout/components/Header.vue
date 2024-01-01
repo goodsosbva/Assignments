@@ -8,8 +8,28 @@
           </button>
         </div>
         <div class="system">
-          <button class="login" @click="openModal('login')">로그인</button>
-          <button class="member" @click="openModal('signIn')">회원가입</button>
+          <button class="login" style="margin-bottom: 4px" @click="openModal('login')">
+            로그인
+          </button>
+          <button
+            v-if="isShowSignUp"
+            class="member"
+            style="margin-bottom: 4px"
+            @click="openModal('signIn')"
+          >
+            회원가입
+          </button>
+          <span
+            v-if="!isShowSignUp"
+            style="
+              display: inline-block;
+              margin-top: 10px;
+              margin-left: 15px;
+              font-size: 15px;
+              white-space: nowrap;
+            "
+            >안녕하세요! 손님!</span
+          >
         </div>
       </div>
     </div>
@@ -163,11 +183,11 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import type { Ref } from 'vue'
 import { isPossibleJoin, authenticateUser } from '@/backend/User/User'
 import { postSendData } from '@/api/api'
-import { BIconArrowLeftShort } from 'bootstrap-vue'
+import { useAuthStore } from '@/stores/auth'
 
 const { push } = useRouter()
 const route = useRoute()
@@ -201,6 +221,7 @@ const memberModalVisible = ref<boolean>(false)
 const siginInModalVisible = ref<boolean>(false)
 const username = ref<string>('')
 const password = ref<string>('')
+const isShowSignUp = ref<boolean>(true)
 
 const loginHandler = async () => {
   alert(`${username.value} + ${password.value}`)
@@ -208,6 +229,11 @@ const loginHandler = async () => {
 
   if (isLogined.isLogin) {
     alert(`로그인이 되었습니다. ${isLogined.loginData}`)
+    // 토큰을 store에 저장
+    useAuthStore().setLoginStatus(true, isLogined.loginData)
+
+    const token = useAuthStore().token
+    console.log('token >>> ', token)
     siginInModalVisible.value = false
   } else {
     alert('로그인이 실패했습니다.')
@@ -284,6 +310,30 @@ const joinMemberSubmitHandler = async () => {
     }
   }
 }
+
+const updateIsShowSignUp = () => {
+  isShowSignUp.value = false
+  console.log(isShowSignUp.value)
+}
+
+onMounted(() => {
+  const tokenKey = 'authToken'
+
+  const isLoggedIn = useAuthStore().isLoggedIn
+  const pastIsLoggedIn = localStorage.getItem(tokenKey)
+
+  console.log(isShowSignUp.value)
+  // const token = useAuthStore().token
+  if (isLoggedIn || pastIsLoggedIn) updateIsShowSignUp()
+})
+
+// watch를 사용하여 isLoggedIn 값의 변경을 감지하고 updateIsShowSignUp 함수 호출
+watch(
+  () => useAuthStore().isLoggedIn,
+  () => {
+    updateIsShowSignUp()
+  }
+)
 </script>
 
 <style scoped>
