@@ -311,27 +311,27 @@ const joinMemberSubmitHandler = async () => {
   }
 }
 
-const updateIsShowSignUp = (isLoggedIn: boolean) => {
-  if (isLoggedIn) {
-    isShowSignUp.value = false
-  }
+const updateIsShowSignUp = () => {
+  isShowSignUp.value = false
   console.log(isShowSignUp.value)
-  // const token = useAuthStore().token
 }
 
 onMounted(() => {
+  const tokenKey = 'authToken'
+
   const isLoggedIn = useAuthStore().isLoggedIn
+  const pastIsLoggedIn = localStorage.getItem(tokenKey)
 
   console.log(isShowSignUp.value)
   // const token = useAuthStore().token
-  updateIsShowSignUp(isLoggedIn)
+  if (isLoggedIn || pastIsLoggedIn) updateIsShowSignUp()
 })
 
 // watch를 사용하여 isLoggedIn 값의 변경을 감지하고 updateIsShowSignUp 함수 호출
 watch(
   () => useAuthStore().isLoggedIn,
-  (newVal) => {
-    updateIsShowSignUp(newVal)
+  () => {
+    updateIsShowSignUp()
   }
 )
 </script>
