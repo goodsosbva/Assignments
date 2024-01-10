@@ -11,3 +11,5 @@
 ｡·͜·｡ sideProject - 너무 사소해서 설명하기도 힘든 작은 프로젝트 모음
 
 ｡·͜·｡ vue-project - 웹디자인기능사 vue로 작업한 저장소
+
+｡·͜·｡ learning-know-how-practice - 새로 학습한 코딩 노하우 실제로 간단하게라도 적용해보는 프로젝트
