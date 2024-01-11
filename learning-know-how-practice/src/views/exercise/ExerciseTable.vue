@@ -1,4 +1,5 @@
 <template>
+  <common-header></common-header>
   <a-list
     class="demo-loadmore-list"
     :loading="initLoading"
@@ -22,29 +23,34 @@
       <a-list-item>
         <template #actions>
           <a key="list-loadmore-edit">edit</a>
-          <a key="list-loadmore-more">more</a>
+          <a key="list-loadmore-more" @click="goRoute">more</a>
         </template>
         <a-skeleton avatar :title="false" :loading="!!item.loading" active>
-          <a-list-item-meta
-            description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-          >
+          <a-list-item-meta :description="item.content">
             <template #title>
-              <a href="https://www.antdv.com/">{{ item.name.last }}</a>
+              <a href="">{{ item.name.last }}</a>
             </template>
             <template #avatar>
               <a-avatar :src="item.picture.large" />
             </template>
           </a-list-item-meta>
-          <div>content</div>
+          <router-link to="/ExerciseTable/RecursiveView">content</router-link>
         </a-skeleton>
       </a-list-item>
     </template>
   </a-list>
+  <common-footer></common-footer>
 </template>
 <script lang="ts" setup>
 import { onMounted, ref, nextTick } from "vue";
+import { useRouter } from "vue-router";
+import CommonHeader from "@/components/common/CommonHeader.vue";
+import CommonFooter from "@/components/common/CommonFooter.vue";
+
+const router = useRouter();
 const count = 3;
-const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
+const constUrl = "https://a3408b73-4f06-4666-824e-9f557a2b928b.mock.pstmn.io";
+const fakeDataUrl = `${constUrl}/exercise`;
 
 const initLoading = ref(true);
 const loading = ref(false);
@@ -54,6 +60,7 @@ onMounted(() => {
   fetch(fakeDataUrl)
     .then((res) => res.json())
     .then((res) => {
+      console.log("res >>> ", res);
       initLoading.value = false;
       data.value = res.results;
       list.value = res.results;
@@ -79,6 +86,11 @@ const onLoadMore = () => {
         window.dispatchEvent(new Event("resize"));
       });
     });
+};
+
+const goRoute = () => {
+  console.log("goTo!!!!!");
+  router.push("/ExerciseTable/RecursiveView");
 };
 </script>
 <style scoped>

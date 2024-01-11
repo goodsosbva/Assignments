@@ -1,17 +1,17 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import ExerciseTable from "@/views/exercise/ExerciseTable.vue";
 import RecursiveView from "@/views/exercise/recursive/RecursiveView.vue";
+import { RouteRecordRaw } from "vue-router";
 
-const routes: Array<RouteRecordRaw> = [
+const exerciseTableRoutes: Array<RouteRecordRaw> = [
+  {
+    path: "/ExerciseTable",
+    component: ExerciseTable,
+    children: [],
+  },
   {
     path: "/ExerciseTable/RecursiveView",
-    name: "RecursiveView",
     component: RecursiveView,
   },
 ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
-
-export default router;
+export default exerciseTableRoutes;
