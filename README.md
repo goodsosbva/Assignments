@@ -13,3 +13,5 @@
 ｡·͜·｡ vue-project - 웹디자인기능사 vue로 작업한 저장소
 
 ｡·͜·｡ learning-know-how-practice - 새로 학습한 코딩 노하우 실제로 간단하게라도 적용해보는 프로젝트
+
+｡·͜·｡ apple-page-clone-khs - 인터렉션 css 공부용 애플 페이즈 클론 프로젝트
