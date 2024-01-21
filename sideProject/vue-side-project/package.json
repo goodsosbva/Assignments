@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
-    "@vue/cli-plugin-router": "~4.5.11",
+    "@vue/cli-plugin-router": "~5.0.8",
     "vite": "^4.4.6"
   }
 }
