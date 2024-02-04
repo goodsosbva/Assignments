@@ -1,5 +1,7 @@
 import http from "http";
-import SocketIO from "socket.io";
+// import SocketIO from "socket.io";
+import {Server} from "socket.io";
+import {instrument} from "@socket.io/admin-ui";
 import express from 'express';
 
 const app = express();
@@ -13,25 +15,65 @@ app.get("/", (req, res) => res.render("home"));
 app.get("/*", (req, res) => res.redirect("/"));
 
 // app.listen(3000, handleListen);
-const httpServer = http.createServer(app);
-const wsServer = SocketIO(httpServer);
+const httpServer = http.createServer(app)
+const wsServer = new Server(httpServer, {
+    cors: {
+        origin: ['https://admin.socket.io'],
+        Credentials: true,
+    },
+})
+instrument(wsServer, {
+    auth: false,
+})
+
+function publicRooms() {
+    const {
+        sockets: {
+            adapter: {sids, rooms},
+        },
+    } = wsServer;
+
+    const publicRooms = [];
+    rooms.forEach((_, key) => {
+        if(sids.get(key) === undefined) {
+            publicRooms.push(key)
+        }
+    })
+    return publicRooms;
+}
+
+function countRoom(roomName) {
+    return wsServer.sockets.adapter.rooms.get(roomName)?.size;
+}
 
 wsServer.on("connection", (socket) => {
     // console.log(socket);
-    socket.on("enter_room", (roomName, done) => {
-        done();
-        socket.join(roomName);
-        socket.to(roomName).emit("welcome");
+    socket["nickname"] = "Anone";
+    socket.onAny((event) => {
+        console.log(wsServer.sockets.adapter);
+        console.log(`socket event: ${event}`);
     })
-    socket.on("disconnectiong", () => {
-        socket.rooms.forEach(room => socket.to(room).emit("bye"));
+    socket.on("enter_room", (roomName, done) => {
+        socket.join(roomName);
+        done();
+        socket.to(roomName).emit("welcome", socket.nickname, countRoom(roomName));
+        wsServer.sockets.emit("room_change", publicRooms());
+    })
+    socket.on("disconnecting", () => {
+        socket.rooms.forEach((room) =>
+            socket.to(room).emit("bye", socket.nickname, countRoom(room) - 1)
+        );
+    });
+    socket.on("disconnect", () => {
+        wsServer.sockets.emit("room_change", publicRooms());
     })
     socket.on("new_message", (msg, room, done) => {
-        socket.to(room).emit("new_message", msg);
+        socket.to(room).emit("new_message", `${socket.nickname}: ${msg}`);
+        // 내가 보낸 메세지를 보기 위해
         done();
     })
+    socket.on("nickname", (nickname) => (socket["nickname"] = nickname));
 })
-
 
 const handleListen = () => console.log("Listening on http://localhost:3000");
 httpServer.listen(3000, handleListen);
