@@ -9,6 +9,7 @@ const call = document.getElementById("call");
 // Welcome Form (join a room)
 const welcome = document.getElementById("welcome");
 const welcomeForm = document.querySelector("form");
+const chatForm = document.querySelector("#chatForm");
 
 call.hidden = true;
 
@@ -17,6 +18,7 @@ let muted = false;
 let cameraOff = false;
 let roomName;
 let myPeerConnection;
+let myDataChannel;
 
 async function getCameras() {
   try {
@@ -117,12 +119,28 @@ async function handleWelcomeSubmit(event) {
   input.value = "";
 }
 
+function handleChatSubmit(event) {
+  event.preventDefault(event);
+  const input = chatForm.querySelector("input");
+  console.log('input >> ', input.value);
+  myDataChannel.send(input.value);
+  const chats = document.querySelector(".chats"); // 클래스 이름으로 가정
+  const li = document.createElement("li");
+  li.innerText = input.value;
+  chats.appendChild(li);
+  input.value = "";
+}
+
 // Socket Code
 socket.on("welcome", async () => {
   // console.log("someome joined!");
-  const myDataChannel = myPeerConnection.createDataChannel("chat");
+  myDataChannel = myPeerConnection.createDataChannel("chat");
   myDataChannel.addEventListener("message", (event) => {
-    console.log(event);
+    console.log('message event >> ', event.data);
+    const chats = document.querySelector(".chats"); // 클래스 이름으로 가정
+    const li = document.createElement("li");
+    li.innerText = event.data;
+    chats.appendChild(li);
   });
   console.log("made data channel");
   const offer = await myPeerConnection.createOffer();
@@ -135,7 +153,11 @@ socket.on("offer", async (offer) => {
   myPeerConnection.addEventListener("datachannel", (e) => {
     myDataChannel = e.channel;
     myDataChannel.addEventListener("message", (e) => {
-      console.log(e);
+      console.log('send Data >>> ', e.data);
+      const chats = document.querySelector(".chats"); // 클래스 이름으로 가정
+      const li = document.createElement("li");
+      li.innerText = e.data;
+      chats.appendChild(li);
     })
   })
   console.log("received the offer");
@@ -192,3 +214,4 @@ muteBtn.addEventListener("click", handleMuteClick);
 cameraBtn.addEventListener("click", handleCameraClick);
 cameraSelect.addEventListener("input", handleCameraChange);
 welcomeForm.addEventListener("submit", handleWelcomeSubmit);
+chatForm.addEventListener("submit", handleChatSubmit);
