@@ -192,9 +192,35 @@ function makeConnection() {
   ]});
   myPeerConnection.addEventListener("icecandidate", handleIce);
   myPeerConnection.addEventListener("addstream", handleAddStream);
+  myPeerConnection.addEventListener("iceconnectionstatechange", handleConnectionChange);
+
   myStream
       .getTracks()
       .forEach((track) => myPeerConnection.addTrack(track, myStream));
+}
+
+// 채팅방에 누가 나갔을 때 처리
+function handleConnectionChange() {
+  if (myPeerConnection.iceConnectionState === "disconnected" ||
+      myPeerConnection.iceConnectionState === "failed" ||
+      myPeerConnection.iceConnectionState === "closed") {
+    console.log("Peer has left the room");
+    // 상대방 스트림 제거 또는 관련 UI 업데이트
+    removePeerStream();
+  }
+}
+
+function removePeerStream() {
+  const peerFace = document.getElementById("peerFace");
+  if (peerFace.srcObject) {
+    peerFace.srcObject.getTracks().forEach(track => track.stop());
+    peerFace.srcObject = null;
+  }
+  // 나갔을 때 UI
+  const chats = document.querySelector(".chats"); // 클래스 이름으로 가정
+  const li = document.createElement("li");
+  li.innerText = '누군가 나갔습니다~ ㅠ, ㅠ';
+  chats.appendChild(li);
 }
 
 function handleIce(data) {
