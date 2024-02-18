@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9a8f0c4-36d3-4d48-abb2-9161e6c9f41b" name="Changes" comment="" />
+    <list default="true" id="e9a8f0c4-36d3-4d48-abb2-9161e6c9f41b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app_2023_khs/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app_2023_khs/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app_2023_khs/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app_2023_khs/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app_2023_khs/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app_2023_khs/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app_2023_khs/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app_2023_khs/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app_2023_khs/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app_2023_khs/src/setupTests.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +61,7 @@
       <workItem from="1704864427375" duration="561000" />
       <workItem from="1704864997747" duration="23000" />
       <workItem from="1707782899497" duration="3000" />
-      <workItem from="1708238247831" duration="280000" />
+      <workItem from="1708238247831" duration="1094000" />
     </task>
     <servers />
   </component>
