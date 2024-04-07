@@ -22,6 +22,7 @@ a {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 10;
     width: 100%;
     height: 44px;
     padding: 0 1rem;
@@ -31,6 +32,7 @@ a {
     position: absolute;
     top: 45px;
     left: 0;
+    z-index: 10;
     width: 100%;
     height: 52px;
     padding: 0 1rem;
@@ -64,10 +66,12 @@ a {
     margin-left: 2em;
 }
 .scroll-section {
-    border: 3px solid blue;
     padding-top: 50vh;
 }
 #scroll-section-0 h1 {
+    position: relative;
+    top: -10vh;
+    z-index: 5;
     font-size: 4rem;
     text-align: center;
 }
@@ -113,6 +117,7 @@ a {
 .desc-message {
     width: 50%;
     font-weight: bold;
+    opacity: 0;
 }
 
 .pin {
@@ -172,6 +177,27 @@ body#show-scene-1 #scroll-section-1 .sticky-elem,
 body#show-scene-2 #scroll-section-2 .sticky-elem,
 body#show-scene-3 #scroll-section-3 .sticky-elem {
     display: block;
+}
+
+.sticky-elem-canvas {
+    top: 0;
+    height: 100%;
+}
+
+.sticky-elem-canvas canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.image-blend-canvas {
+    background: darkblue;
+}
+
+#scroll-section-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media (min-width: 1024px) {
