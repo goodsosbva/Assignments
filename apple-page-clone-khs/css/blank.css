@@ -18,6 +18,7 @@ a {
     color: rgb(29, 29, 31);
     text-decoration: none;
 }
+
 .global-nav {
     position: absolute;
     top: 0;
@@ -28,6 +29,7 @@ a {
     padding: 0 1rem;
 }
 
+/* 아래 메뉴  */
 .local-nav {
     position: absolute;
     top: 45px;
@@ -37,6 +39,13 @@ a {
     height: 52px;
     padding: 0 1rem;
     border-bottom: 1px solid #ddd;
+}
+
+.local-nav-sticky .local-nav {
+    position: fixed;
+    top: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: saturate(180%) blur(15px);
 }
 
 .global-nav-links,
@@ -66,6 +75,7 @@ a {
     margin-left: 2em;
 }
 .scroll-section {
+    position: relative;
     padding-top: 50vh;
 }
 #scroll-section-0 h1 {
@@ -150,7 +160,7 @@ a {
 
 .canvas-caption {
     max-width: 1000px;
-    margin: 0 auto;
+    margin: -15em auto 0;
     padding: 0 1rem;
     font-size: 1.2rem;
     color: #888888;
@@ -190,9 +200,11 @@ body#show-scene-3 #scroll-section-3 .sticky-elem {
     left: 50%;
 }
 
-.image-blend-canvas {
-    background: darkblue;
+.image-blend-canvas.sticky {
+    position: fixed;
+    top: 0;
 }
+
 
 #scroll-section-3 {
     display: flex;
@@ -208,6 +220,7 @@ body#show-scene-3 #scroll-section-3 .sticky-elem {
         font-size: 4vw;
     }
     .description {
+        padding: 0;
         font-size: 2rem;
         max-width: 1000px;
         margin: 0 auto;
@@ -239,10 +252,13 @@ body#show-scene-3 #scroll-section-3 .sticky-elem {
     }
 
     .mid-message {
+        padding: 0;
+        width: 1000px;
         font-size: 4vw;
     }
 
     .canvas-caption {
+        padding: 0;
         font-size: 2rem;
     }
 }
