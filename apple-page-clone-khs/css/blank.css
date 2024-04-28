@@ -19,6 +19,14 @@ a {
     text-decoration: none;
 }
 
+body.before-load {
+    overflow: hidden;
+}
+
+.container {
+    overflow-x: hidden;
+}
+
 .global-nav {
     position: absolute;
     top: 0;
@@ -45,6 +53,11 @@ a {
     position: fixed;
     top: 0;
     background: rgba(255, 255, 255, 0.1);
+
+    /* 아이폰, 파이어 폭스, 모질라*/
+    -webkit-backdrop-filter: saturate(180%) blur(15px);
+    -moz-backdrop-filter: saturate(180%) blur(15px);
+    -o-backdrop-filter: saturate(180%) blur(15px);
     backdrop-filter: saturate(180%) blur(15px);
 }
 
@@ -160,7 +173,7 @@ a {
 
 .canvas-caption {
     max-width: 1000px;
-    margin: -15em auto 0;
+    margin: -24rem auto 0;
     padding: 0 1rem;
     font-size: 1.2rem;
     color: #888888;
@@ -187,6 +200,12 @@ body#show-scene-1 #scroll-section-1 .sticky-elem,
 body#show-scene-2 #scroll-section-2 .sticky-elem,
 body#show-scene-3 #scroll-section-3 .sticky-elem {
     display: block;
+    will-change: transform, opacity;
+}
+
+.scroll-effect-end .sticky-elem {
+    /* 스크롤 효과가 모두 끝나고, 아래 일반 콘텐츠 영역에서는 sticky-elem들을 모두 안보이도록 */
+    display: none !important;
 }
 
 .sticky-elem-canvas {
@@ -227,6 +246,10 @@ body#show-scene-3 #scroll-section-3 .sticky-elem {
     transition: 0.5s;
  }
 
+.before-load .container {
+    display: none;
+}
+
 .before-load .loading {
     opacity: 1;
 }
@@ -254,6 +277,10 @@ body#show-scene-3 #scroll-section-3 .sticky-elem {
     stroke-dashoffset: 0;
     fill: transparent;
     animation: loading-circle-ani 1s infinite;
+}
+
+.normal-content {
+    margin-bottom: 10rem;
 }
 
 @media (min-width: 1024px) {
@@ -302,6 +329,7 @@ body#show-scene-3 #scroll-section-3 .sticky-elem {
     }
 
     .canvas-caption {
+        margin-top: -8rem;
         padding: 0;
         font-size: 2rem;
     }
