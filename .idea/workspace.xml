@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9a8f0c4-36d3-4d48-abb2-9161e6c9f41b" name="Changes" comment="[feat] init movie app">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e9a8f0c4-36d3-4d48-abb2-9161e6c9f41b" name="Changes" comment="[feat] init movie app" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,13 +30,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "khsBranch",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/admin/Desktop/okestro_user/remote-maestro-user",
+    "last_opened_file_path": "C:/Users/admin/Desktop/놀이동산/sideProject/kwitter",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\admin\\Desktop\\놀이동산\\sideProject\\vue-project\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\admin\\Desktop\\놀이동산\\sideProject\\myBookReport\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -55,6 +53,7 @@
       <workItem from="1707782899497" duration="3000" />
       <workItem from="1708238247831" duration="1175000" />
       <workItem from="1708306302704" duration="434000" />
+      <workItem from="1715406354328" duration="875000" />
     </task>
     <task id="LOCAL-00001" summary="[feat] init movie app">
       <option name="closed" value="true" />
