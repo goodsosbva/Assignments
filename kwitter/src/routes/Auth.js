@@ -7,6 +7,7 @@ const Auth = () => {
     const [newAccount , setNewAccount] = useState(true);
 
     const onChange = (e) => {
+        console.log(e)
         const {
             target: {name, value}
         } = e;
