@@ -1,4 +1,4 @@
-import { dbService } from "fbase";
+import {dbService, storageService} from "fbase";
 import { useState } from 'react';
 
 const Kweet = ({ kweetObj, isOwner }) => {
@@ -8,8 +8,10 @@ const Kweet = ({ kweetObj, isOwner }) => {
         const ok = window.confirm("삭제할?")
 
         if (ok) {
-            const data = await dbService.doc(`kweets/${kweetObj.id}`).delete();
-            console.log(data);
+            await dbService.doc(`kweets/${kweetObj.id}`).delete();
+            if (kweetObj.attachmentUrl !== "") {
+                await storageService.refFromURL(kweetObj.attachmentUrl).delete();
+            }
         }
     }
 
@@ -43,6 +45,9 @@ const Kweet = ({ kweetObj, isOwner }) => {
             ): (
                 <>
                     <h4>{kweetObj.text}</h4>
+                    { kweetObj.attachmentUrl && (
+                        <img src={kweetObj.attachmentUrl} width="50px" height="50px" alt="img" />
+                    )}
                     { isOwner && (
                         <>
                             <button onClick={onDeleteClick}>Delete Kweet</button>
