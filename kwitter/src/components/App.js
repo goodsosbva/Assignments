@@ -1,14 +1,27 @@
-import {useState} from 'react';
+import { useEffect,useState } from 'react';
 import AppRouter from "components/Router";
 import {authService} from "fbase";
 
 function App() {
+    const [init, setInit] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
-    console.log(authService.currentUser);
+    const [userObj, setUserObj] = useState(null);
+
+    useEffect(() => {
+        authService.onAuthStateChanged((user) => {
+            if (user) {
+                setIsLoggedIn(user);
+                setUserObj(user);
+            } else {
+                setIsLoggedIn(false)
+            }
+
+            setInit(true);
+        });
+    })
     return (
         <>
-            <AppRouter isLoggedIn={isLoggedIn} />
-            <footer>&copy {new Date().getFullYear()} Kwitter</footer>
+            {init ?   <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> : 'initializing...'}
         </>
     );
 }
