@@ -14,10 +14,8 @@
 
 ｡·͜·｡ learning-know-how-practice - 새로 학습한 코딩 노하우 실제로 간단하게라도 적용해보는 프로젝트
 
-｡·͜·｡ apple-page-clone-khs - 인터렉션 css 구현 해보고 싶어서 만든 공부용 애플 페이즈 클론 프로젝트
-
 ｡·͜·｡ koom - zoom 을 따라해서 구현 해보는 프로젝트 (동영상 구현과 + 소켓을 써보고 싶어서 만든 프로젝트)
 
 ｡·͜·｡ kwitter - twitter 을 따라해서 구현 해보는 프로젝트 (실시간 채팅 기능 배움 목적)
 
-｡·͜·｡ apple-page-clone - apple 페이지(https://www.apple.com/kr/ipad-pro/) 같은 인터렉티브 웹 개발 공부 목적
+｡·͜·｡ apple-page-clone-khs - apple 페이지(https://www.apple.com/kr/ipad-pro/) 같은 인터렉티브 웹 개발 공부 목적
