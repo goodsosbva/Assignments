@@ -1,10 +1,13 @@
 {
   "files": {
-    "main.js": "/kwitter/static/js/main.b6bd57c2.js",
+    "main.css": "/kwitter/static/css/main.b10d5b48.css",
+    "main.js": "/kwitter/static/js/main.8e450384.js",
     "index.html": "/kwitter/index.html",
-    "main.b6bd57c2.js.map": "/kwitter/static/js/main.b6bd57c2.js.map"
+    "main.b10d5b48.css.map": "/kwitter/static/css/main.b10d5b48.css.map",
+    "main.8e450384.js.map": "/kwitter/static/js/main.8e450384.js.map"
   },
   "entrypoints": [
-    "static/js/main.b6bd57c2.js"
+    "static/css/main.b10d5b48.css",
+    "static/js/main.8e450384.js"
   ]
 }
