@@ -1,5 +1,7 @@
 import {dbService, storageService} from "fbase";
 import { useState } from 'react';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTrash, faPencilAlt} from '@fortawesome/free-solid-svg-icons';
 
 const Kweet = ({ kweetObj, isOwner }) => {
     const [editing, setEditing] = useState(false);
@@ -33,14 +35,14 @@ const Kweet = ({ kweetObj, isOwner }) => {
         setEditing(false);
     }
     return (
-        <div>
+        <div className="nweet">
             {editing ? (
                 <>
-                    <form onSubmit={onSubmit}>
-                        <input onChange={onChange} value={newKweet} required />
-                        <input type="submit" value="Update Kweet" />
+                    <form onSubmit={onSubmit} className="container nweetEdit">
+                        <input onChange={onChange} value={newKweet} required placeholder="Edit your kweet" autoFocus className="formInput" />
+                        <input type="submit" value="Update Kweet" className="formBtn" />
                     </form>
-                    <button onClick={toggleEditing}>Cancel</button>
+                    <button onClick={toggleEditing} className="formBtn cancelBtn">Cancel</button>
                 </>
             ): (
                 <>
@@ -49,10 +51,14 @@ const Kweet = ({ kweetObj, isOwner }) => {
                         <img src={kweetObj.attachmentUrl} width="50px" height="50px" alt="img" />
                     )}
                     { isOwner && (
-                        <>
-                            <button onClick={onDeleteClick}>Delete Kweet</button>
-                            <button onClick={toggleEditing}>Edit Kweet</button>
-                        </>
+                        <div className="nweet__actions">
+                            <button onClick={onDeleteClick}>
+                                <FontAwesomeIcon icon={faTrash} />
+                            </button>
+                            <button onClick={toggleEditing}>
+                                <FontAwesomeIcon icon={faPencilAlt} />
+                            </button>
+                        </div>
                     )}
                 </>
                 )
