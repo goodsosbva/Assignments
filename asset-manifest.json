@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/kwitter/static/js/main.b6bd57c2.js",
+    "index.html": "/kwitter/index.html",
+    "main.b6bd57c2.js.map": "/kwitter/static/js/main.b6bd57c2.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.b6bd57c2.js"
+  ]
+}
